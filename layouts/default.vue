@@ -23,7 +23,7 @@ export default Vue.extend({});
     display: flex;
     justify-content: space-between;
     padding-top: 20px;
-    width: calc(100% - 200px);
+    width: calc(100% - 60px);
     min-width: 1200px;
     height: calc(100% - 100px);
     margin: 0 auto;
@@ -31,7 +31,6 @@ export default Vue.extend({});
     .route-box {
       width: calc(100% - 280px);
       background: #fff;
-      padding: 20px;
       border-radius: 12px;
       box-sizing: border-box;
       overflow: hidden;
