@@ -3,7 +3,7 @@
     <Header />
     <div class="layout-content">
       <nuxt class="route-box" />
-      <Sidebar/>
+      <Sidebar />
     </div>
   </div>
 </template>
@@ -16,6 +16,8 @@ export default Vue.extend({});
   background: rgb(250, 250, 252);
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
 
   &-content {
     display: flex;
@@ -23,6 +25,7 @@ export default Vue.extend({});
     padding-top: 20px;
     width: calc(100% - 200px);
     min-width: 1200px;
+    height: calc(100% - 100px);
     margin: 0 auto;
 
     .route-box {
@@ -31,6 +34,7 @@ export default Vue.extend({});
       padding: 20px;
       border-radius: 12px;
       box-sizing: border-box;
+      overflow: hidden;
       border: 1px solid rgb(242, 243, 245);
       box-shadow: rgba(35, 46, 67, 6%) 0px 4px 10px;
     }
