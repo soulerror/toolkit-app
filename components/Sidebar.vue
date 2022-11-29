@@ -8,6 +8,7 @@
 .sidebar {
   width: 240px;
   min-height: 200px;
+  height: fit-content;
   background-color: #fff;
   border-radius: 12px;
   border: 1px solid rgb(242, 243, 245);
