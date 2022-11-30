@@ -27,7 +27,7 @@ export default Vue.extend({
   cursor: pointer;
 }
 .cp-button:hover {
-  background: linear-gradient(90deg, #533ef9 0%, #755dfa 100%);
+  background: @buttonColor;
   color: #fff;
 }
 </style>

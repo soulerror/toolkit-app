@@ -1,4 +1,4 @@
 <template>
-<!-- rgb颜色庄户按 -->
+<!-- rgb颜色转换 -->
     <div></div>
 </template>

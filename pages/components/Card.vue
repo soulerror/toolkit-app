@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <img src="https://files.codelife.cc/icons/douyin.svg" alt=""/>
+    <slot />
   </div>
 </template>
 <script lang="ts">
@@ -19,8 +19,10 @@ export default Vue.extend({
   width: 100px;
   background-color: #fff;
   cursor: pointer;
+  text-align: center;
+  line-height: 60px;
 
-  img{
+  img {
     height: 60px;
     width: 60px;
     border-radius: 12px;

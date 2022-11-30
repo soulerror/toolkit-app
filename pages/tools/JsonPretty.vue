@@ -2,33 +2,25 @@
   <!-- json格式化 -->
   <div class="json">
     <section class="tool-header">Json格式化工具</section>
-    <div class="tool-box">
+    <div class="tool-box json-box">
       <div class="input-box">
-        <a-alert
-          v-show="formatError"
-          message="JSON格式不正确"
-          type="error"
-          banner
-        />
         <div class="clean-btn" v-show="jsonStr" @click="cleanJson">
           <a-icon type="close" />
         </div>
         <textarea
-          :class="`${formatError ? 'json-input error-input' : 'json-input'}`"
+          class="json-input scroll-style"
           contenteditable="true"
           aria-multiline="true"
           white-space="pre-wap"
           placeholder="请输入需要格式化的Json"
           v-model="jsonStr"
         ></textarea>
-        <div class="bottom-btns">
-          <!-- <Button @click="prettyJson"><a-icon type="sync" /> 格式转换</Button> -->
-        </div>
+        <div class="bottom-btns"></div>
       </div>
       <div class="json-output">
-        <pre>{{ prettyStr }}</pre>
+        <pre :class="`scroll-style ${formatError?'error-text':''}`">{{ prettyStr }}</pre>
         <div class="bottom-btns">
-          <Button @click="prettyJson"
+          <Button @click="storeInLocal"
             ><a-icon type="history" /> 历史记录
           </Button>
           <Button @click="setClipboardText">
@@ -66,8 +58,12 @@ export default Vue.extend({
         this.formatError = false;
       } catch (e) {
         this.formatError = true;
+        prettyStr = "JSON格式错误";
       }
       this.prettyStr = prettyStr;
+    },
+    storeInLocal(){
+      localStorage.setItem("json",this.prettyStr)
     },
     setClipboardText() {
       clipboard(this.prettyStr);
@@ -82,14 +78,13 @@ export default Vue.extend({
 <style lang="less" scoped>
 @import url("~assets/css/variable.less");
 .json {
-  .tool-header {
-    height: 56px;
-    width: 100%;
-    line-height: @header-2nd-h;
-    padding: 0 12px;
-    border-bottom: 1px solid rgb(242, 243, 245);
-  }
-
+  // .tool-header {
+  //   height: 56px;
+  //   width: 100%;
+  //   line-height: @header-2nd-h;
+  //   padding: 0 12px;
+  //   border-bottom: 1px solid @borderColor;
+  // }
   .clean-btn {
     position: absolute;
     right: 12px;
@@ -104,52 +99,30 @@ export default Vue.extend({
   .clean-btn:hover {
     background-color: #dcdfe6;
   }
-  .tool-box {
+  .json-box {
     display: flex;
     justify-content: space-between;
-    width: 100%;
-    height: calc(100% - @header-2nd-h);
 
     & > div {
       width: 50%;
       height: 100%;
-
-      /*chrome滚动条样式修改*/
-      &::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-        /*background-color: #ddd;*/
-      }
-
-      /*滑块*/
-      &::-webkit-scrollbar-thumb {
-        background-color: #c7c8cb;
-        border-radius: 4px;
-      }
-
-      &::-webkit-scrollbar-thumb:hover {
-        background-color: #b6b8b9;
-      }
-
-      /*滑道*/
-      &::-webkit-scrollbar-track {
-        border-radius: 4px;
-      }
     }
 
     .input-box {
-      border-right: 1px solid rgb(242, 243, 245);
+      border-right: 1px solid @borderColor;
       position: relative;
     }
 
     .bottom-btns {
+      height: 60px;
       display: flex;
       justify-content: flex-end;
+      align-items: center;
       padding: 0 20px;
     }
 
-    .error-input {
-      border: 1px solid #f56c6c !important;
+    .error-text {
+      color: #f56c6c !important;
     }
 
     .json-input {
@@ -160,7 +133,7 @@ export default Vue.extend({
       height: calc(100% - @button-h - 20px);
       padding: 10px;
       overflow-y: auto;
-      font-size: 20px;
+      font-size: 14px;
       color: #000;
       resize: none;
     }
