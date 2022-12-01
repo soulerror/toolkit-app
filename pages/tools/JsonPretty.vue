@@ -29,15 +29,20 @@
         </div>
       </div>
     </div>
-    <div slot="drawer" class="scroll-style his-box">
-      <p
-        class="his-list"
-        v-for="(item, index) in parseHistory"
-        :key="index"
-        @click="setJsonStrText(item)"
-      >
-        {{ item }}
-      </p>
+    <div slot="drawer" class="drawer-box">
+      <div class="scroll-style his-box">
+        <p
+          class="his-list"
+          v-for="(item, index) in parseHistory"
+          :key="index"
+          @click="setJsonStrText(item)"
+        >
+          {{ item }}
+        </p>
+      </div>
+      <div class="bottom-btns">
+        <Button @click="confirmDel"><a-icon type="delete" /> 清空历史 </Button>
+      </div>
     </div>
   </ToolCard>
 </template>
@@ -93,15 +98,17 @@ export default Vue.extend({
      * 点击拷贝按钮
      */
     onCopyText() {
-      let text = this.prettyStr;
-      let flag: boolean = this.setClipboardText(text);
+      let text = this.jsonStr;
+      let flag: boolean = this.setClipboardText(this.prettyStr);
       if (flag) {
         let oldHis: string = this.$getLocal(storeKey);
         let hisArr: Array<string> = oldHis ? JSON.parse(oldHis) : [];
-        let index = hisArr.findIndex((item) => item === text);
-        console.log(index, "数组下标");
-        index != -1 && (hisArr = hisArr.slice(index));
-        hisArr.push(this.prettyStr);
+        if (hisArr) {
+          let index = hisArr.findIndex((item) => item == text);
+          index != -1 && hisArr.splice(index, 1);
+        }
+        hisArr.unshift(text);
+        console.log(hisArr);
         this.$storeLocal(storeKey, JSON.stringify(hisArr));
       }
     },
@@ -136,6 +143,19 @@ export default Vue.extend({
     onClose() {
       this.visible = false;
     },
+    /**
+     * 确认删除记录
+     */
+    confirmDel() {
+      this.$confirm({
+        title: "确认删除？",
+        content: "删除后不可恢复，确认删除？",
+        onOk: () => {
+          this.$storeLocal(storeKey, []);
+          this.showHistory();
+        },
+      });
+    },
   },
 });
 </script>
@@ -144,8 +164,8 @@ export default Vue.extend({
 .json {
   .clean-btn {
     position: absolute;
-    right: 12px;
-    top: 12px;
+    right: 6px;
+    top: 6px;
     height: 24px;
     width: 24px;
     line-height: 24px;
@@ -169,14 +189,6 @@ export default Vue.extend({
     .input-box {
       border-right: 1px solid @borderColor;
       position: relative;
-    }
-
-    .bottom-btns {
-      height: 60px;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      padding: 0 20px;
     }
 
     .error-text {
@@ -207,22 +219,38 @@ export default Vue.extend({
     }
   }
 }
+
+.bottom-btns {
+  height: 60px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 20px;
+}
+
 .his-title {
   font-size: 14px;
 }
 
-.his-box {
-  padding: 12px;
+.drawer-box {
   height: 100%;
 }
 
+.his-box {
+  height: calc(100% - @button-h - 20px);
+}
+
 .his-list {
+  padding: 12px;
+  margin: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   cursor: pointer;
+  border-radius: 12px 0 0 12px;
 }
-.hist-list:hover {
-  background-color: #f2f6fc;
+.his-list:hover {
+  background: @themeColor;
+  color: #fff;
 }
 </style>

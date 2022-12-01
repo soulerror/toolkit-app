@@ -32,8 +32,12 @@ const tools: Tool[] = [
     name: "Url编解码工具",
   },
   {
-    path: "/tools/regular",
+    path: "/tools/Regular",
     name: "正则表达式验证",
+  },
+    {
+    path: "/tools/RgbHex",
+    name: "RGB HEX互转",
   },
 ];
 

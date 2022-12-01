@@ -18,7 +18,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    'ant-design-vue/dist/antd.css',
+    'ant-design-vue/dist/antd.less',
     'assets/css/global.less'
   ],
 
@@ -43,5 +43,15 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    loaders: {
+      less: {
+        lessOptions: { // less-loader 5.x以上才有 lessOptions , 5.x 以下直接配置
+          javascriptEnabled: true,
+          modifyVars: { // 根据自己需要的主题颜色修改， antdV 的变量配置可以查看 https://github.com/vueComponent/ant-design-vue/blob/master/components/style/themes/default.less
+            'primary-color': '#533ef9',
+          }
+        },
+      },
+    },
   }
 }

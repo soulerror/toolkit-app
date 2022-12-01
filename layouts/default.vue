@@ -1,15 +1,25 @@
 <template>
-  <div class="layout">
-    <Header />
-    <div class="layout-content">
-      <nuxt class="route-box" />
-      <Sidebar />
+  <a-config-provider :locale="locale">
+    <div class="layout">
+      <Header />
+      <div class="layout-content">
+        <nuxt class="route-box" />
+        <Sidebar />
+      </div>
     </div>
-  </div>
+  </a-config-provider>
 </template>
 <script lang="ts">
 import Vue from "vue";
-export default Vue.extend({});
+import zhCN from "@/plugins/antd-ui";
+
+export default Vue.extend({
+  data() {
+    return {
+      locale: zhCN,
+    };
+  },
+});
 </script>
 <style lang="less" scoped>
 .layout {

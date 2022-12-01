@@ -45,7 +45,7 @@ export default Vue.extend({
   position: absolute;
   height: 100%;
   width: @width;
-  // padding:5px 0;
+  padding-top: 30px;
   top: 0;
   border-left: 1px @borderColor solid;
   background-color: #fff;
@@ -58,6 +58,20 @@ export default Vue.extend({
 }
 .tool-sidebar-hide {
   right: -@width;
+}
+.clean-btn {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  height: 24px;
+  width: 24px;
+  line-height: 24px;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.clean-btn:hover {
+  background-color: #dcdfe6;
 }
 .drawer-transition-enter-active,
 .drawer-transition-leave-active {
