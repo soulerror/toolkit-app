@@ -5,15 +5,17 @@
     </div>
     <div class="tool-box">
       <slot />
-    </div>
-    <transition name="fade">
-      <div class="tool-sidebar" v-show="drawerVisible">
+      <div
+        :class="`tool-sidebar ${
+          drawerVisible ? 'tool-sidebar-show' : 'tool-sidebar-hide'
+        }`"
+      >
         <div class="clean-btn" @click="_drawerClose">
           <a-icon type="close" />
         </div>
         <slot name="drawer" />
       </div>
-    </transition>
+    </div>
   </div>
 </template>
 <script lang="ts">
@@ -32,7 +34,7 @@ export default Vue.extend({
   },
 });
 </script>
-<style lang="less">
+<style lang="less" scoped>
 @import url("@/assets/css/variable.less");
 @width: 240px;
 .tool-body {
@@ -43,24 +45,29 @@ export default Vue.extend({
   position: absolute;
   height: 100%;
   width: @width;
-  right: 0;
+  // padding:5px 0;
   top: 0;
   border-left: 1px @borderColor solid;
   background-color: #fff;
   box-shadow: @shadowColor;
+  border-radius: 14px 0 0 14px;
+  transition: all 1s ease;
+}
+.tool-sidebar-show {
+  right: 0;
+}
+.tool-sidebar-hide {
+  right: -@width;
+}
+.drawer-transition-enter-active,
+.drawer-transition-leave-active {
+  right: 0;
+  transition: all 1s ease;
 }
 
-.mask {
-  height: 100%;
-  width: 100%;
-}
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
+.drawer-transition-enter-from,
+.drawer-transition-leave-to {
+  right: -@width;
+  transition: all 1s ease;
 }
 </style>

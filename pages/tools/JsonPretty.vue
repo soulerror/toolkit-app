@@ -18,27 +18,6 @@
         <div class="bottom-btns"></div>
       </div>
       <div class="json-output">
-        <a-drawer
-          placement="right"
-          :get-container="false"
-          :mask="false"
-          :wrap-style="{ position: 'absolute' }"
-          @close="onClose"
-        >
-          <span slot="title" class="his-title"
-            ><a-icon type="history" /> 历史记录</span
-          >
-          <div class="scroll-style his-body">
-            <p
-              class="his-list"
-              v-for="(item, index) in parseHistory"
-              :key="index"
-              @click="setJsonStrText(item)"
-            >
-              {{ item }}
-            </p>
-          </div>
-        </a-drawer>
         <pre :class="`scroll-style ${formatError ? 'error-text' : ''}`">{{
           prettyStr
         }}</pre>
@@ -49,6 +28,16 @@
           <Button @click="onCopyText"> <a-icon type="copy" /> 复制文本 </Button>
         </div>
       </div>
+    </div>
+    <div slot="drawer" class="scroll-style his-box">
+      <p
+        class="his-list"
+        v-for="(item, index) in parseHistory"
+        :key="index"
+        @click="setJsonStrText(item)"
+      >
+        {{ item }}
+      </p>
     </div>
   </ToolCard>
 </template>
@@ -210,18 +199,6 @@ export default Vue.extend({
     .json-output {
       position: relative;
       overflow: hidden;
-
-      .his-title {
-        font-size: 14px;
-      }
-
-      .his-list {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        cursor: pointer;
-      }
-
       pre {
         padding: 10px;
         height: calc(100% - @button-h - 20px);
@@ -229,5 +206,23 @@ export default Vue.extend({
       }
     }
   }
+}
+.his-title {
+  font-size: 14px;
+}
+
+.his-box {
+  padding: 12px;
+  height: 100%;
+}
+
+.his-list {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+.hist-list:hover {
+  background-color: #f2f6fc;
 }
 </style>
