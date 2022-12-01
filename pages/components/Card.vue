@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" @click="_click">
     <slot />
   </div>
 </template>
@@ -7,20 +7,23 @@
 import Vue from "vue";
 export default Vue.extend({
   data() {
-    return {
-      hehe: "xxxxxx",
-    };
+    return {};
+  },
+  methods: {
+    _click() {
+      this.$emit("click");
+    },
   },
 });
 </script>
 <style lang="less" scoped>
 .card {
   height: 100px;
-  width: 100px;
+  // width: 100px;
+  width: fit-content;
   background-color: #fff;
   cursor: pointer;
   text-align: center;
-  line-height: 60px;
 
   img {
     height: 60px;

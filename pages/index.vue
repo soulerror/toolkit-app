@@ -5,9 +5,9 @@
       <Card
         v-for="(item, index) in tools"
         :key="index"
-        @click.native="skipTo(item.path)"
+        @click="skipTo(item.path)"
       >
-        {{ item.name}}
+        <Button> {{ item.name }}</Button>
       </Card>
     </div>
   </div>
@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import Card from "~/pages/components/Card.vue";
+import Card from "@/pages/components/Card.vue";
 
 interface Tool {
   path: string;
@@ -30,6 +30,10 @@ const tools: Tool[] = [
   {
     path: "/tools/UrlCodec",
     name: "Url编解码工具",
+  },
+  {
+    path: "/tools/regular",
+    name: "正则表达式验证",
   },
 ];
 

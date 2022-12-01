@@ -8,7 +8,7 @@ import Vue from "vue";
 export default Vue.extend({
   methods: {
     _click: function () {
-      this.$emit("click", null);
+      this.$emit("click");
     },
   },
 });

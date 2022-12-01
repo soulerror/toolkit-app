@@ -36,7 +36,7 @@ export function debounce(func: Function, wait = 500, immediate: boolean = false)
 export function clipboard(val: string) {
     if (!val) {
         message.warning("复制内容为空")
-        return
+        return false;
     }
     try {
         if (navigator.clipboard && window.isSecureContext) {
@@ -50,33 +50,10 @@ export function clipboard(val: string) {
             text.remove();
         }
         message.success('内容已复制至粘贴板')
+        return true;
     }
     catch (e) {
         message.error("当前浏览器环境不支持复制");
     }
-
-}
-
-
-/**
- * 存数据到localStorage
- * @param key 键值
- * @param val 数据
- */
-export function storeLocal(key: string, val: any) {
-    if (process.browser) {
-        let strVal = (typeof (val) == 'string') ? val : JSON.stringify(val)
-        localStorage.setItem(key, strVal);
-    }
-}
-
-/**
- * 
- * @param key 键值
- * @returns 数据
- */
-export function getLocal(key: string) {
-    if (process.browser) {
-        return localStorage.getItem(key);
-    }
+    return false;
 }
