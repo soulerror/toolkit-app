@@ -1,8 +1,8 @@
 <template>
   <!-- json格式化 -->
-  <div class="json">
-    <section class="tool-header">Json格式化工具</section>
-    <div class="tool-box json-box">
+  <ToolCard class="json" :drawerVisible="visible" @drawerClose="onClose">
+    <section slot="title">Json格式化工具</section>
+    <div class="json-box">
       <div class="input-box">
         <div class="clean-btn" v-show="jsonStr" @click="cleanJson">
           <a-icon type="close" />
@@ -20,21 +20,24 @@
       <div class="json-output">
         <a-drawer
           placement="right"
-          :visible="visible"
           :get-container="false"
           :mask="false"
           :wrap-style="{ position: 'absolute' }"
           @close="onClose"
         >
-          <span slot="title"><a-icon type="history" /> 历史记录</span>
-          <p
-            class="his-list"
-            v-for="(item, index) in parseHistory"
-            :key="index"
-            @click="setClipboardText(item)"
+          <span slot="title" class="his-title"
+            ><a-icon type="history" /> 历史记录</span
           >
-            {{ item }}
-          </p>
+          <div class="scroll-style his-body">
+            <p
+              class="his-list"
+              v-for="(item, index) in parseHistory"
+              :key="index"
+              @click="setJsonStrText(item)"
+            >
+              {{ item }}
+            </p>
+          </div>
         </a-drawer>
         <pre :class="`scroll-style ${formatError ? 'error-text' : ''}`">{{
           prettyStr
@@ -47,7 +50,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </ToolCard>
 </template>
 <script lang="ts">
 import Vue from "vue";
@@ -78,7 +81,7 @@ export default Vue.extend({
   },
   watch: {
     jsonStr() {
-      debounce(() => this.prettyJson());
+      debounce(() => this.prettyJson(), 200);
     },
   },
   methods: {
@@ -101,13 +104,20 @@ export default Vue.extend({
      * 点击拷贝按钮
      */
     onCopyText() {
-      let flag: boolean = this.setClipboardText(this.prettyStr);
+      let text = this.prettyStr;
+      let flag: boolean = this.setClipboardText(text);
       if (flag) {
         let oldHis: string = this.$getLocal(storeKey);
         let hisArr: Array<string> = oldHis ? JSON.parse(oldHis) : [];
+        let index = hisArr.findIndex((item) => item === text);
+        console.log(index, "数组下标");
+        index != -1 && (hisArr = hisArr.slice(index));
         hisArr.push(this.prettyStr);
         this.$storeLocal(storeKey, JSON.stringify(hisArr));
       }
+    },
+    setJsonStrText(text: string) {
+      this.jsonStr = text;
     },
     /**
      * 设置粘贴板
@@ -143,13 +153,6 @@ export default Vue.extend({
 <style lang="less" scoped>
 @import url("~assets/css/variable.less");
 .json {
-  // .tool-header {
-  //   height: 56px;
-  //   width: 100%;
-  //   line-height: @header-2nd-h;
-  //   padding: 0 12px;
-  //   border-bottom: 1px solid @borderColor;
-  // }
   .clean-btn {
     position: absolute;
     right: 12px;
@@ -165,6 +168,7 @@ export default Vue.extend({
     background-color: #dcdfe6;
   }
   .json-box {
+    height: 100%;
     display: flex;
     justify-content: space-between;
 
@@ -206,6 +210,10 @@ export default Vue.extend({
     .json-output {
       position: relative;
       overflow: hidden;
+
+      .his-title {
+        font-size: 14px;
+      }
 
       .his-list {
         white-space: nowrap;
