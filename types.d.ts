@@ -3,5 +3,6 @@ declare module 'vue/types/vue' {
   interface Vue {
     $storeLocal: any,
     $getLocal: any,
+    $push: any
   }
 }

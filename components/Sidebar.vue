@@ -1,13 +1,23 @@
 <template>
   <!-- 侧边栏 -->
   <div class="sidebar">
-    <img
-      src="@/assets/images/animation.gif"
-    />
+    <div class="sidebar-title"><a-icon type="fire" class="ico" /> 热门工具</div>
+    <div class="hot-list">
+      <div class="hot-list-item" v-for="(item, index) in 4" :key="index">
+        JSON格式化工具
+      </div>
+    </div>
+    <div class="sidebar-title"><a-icon type="history" /> 最近使用</div>
+    <div class="hot-list">
+      <div class="hot-list-item" v-for="(item, index) in 4" :key="index">
+        JSON格式化工具
+      </div>
+    </div>
+    <img src="@/assets/images/animation.gif" />
   </div>
 </template>
 <style lang="less" scoped>
-@import url('~assets/css/variable.less');
+@import url("~assets/css/variable.less");
 .sidebar {
   width: 240px;
   min-height: 200px;
@@ -23,6 +33,34 @@
     position: absolute;
     bottom: -20px;
     right: 0px;
+  }
+  &-title {
+    line-height: 30px;
+    border-bottom: @border;
+    border-radius: 0 0 4px 4px;
+    text-indent: 0.5em;
+
+    .ico {
+      color: red;
+    }
+  }
+  .hot-list {
+    margin-bottom: 20px;
+
+    &-item {
+      height: @header-3th-h;
+      line-height: @header-3th-h;
+      width: 100%;
+      border-radius: @header-3th-h / 3 0 0 @header-3th-h / 3;
+      text-indent: 1em;
+      cursor: pointer;
+      position: relative;
+    }
+
+    &-item:hover {
+      background: @themeColor;
+      color: #fff;
+    }
   }
 }
 </style>

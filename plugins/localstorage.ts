@@ -31,3 +31,4 @@ const getLocal = (key: string) => {
 
 Vue.prototype.$storeLocal = storeLocal
 Vue.prototype.$getLocal = getLocal
+export { getLocal, storeLocal };
