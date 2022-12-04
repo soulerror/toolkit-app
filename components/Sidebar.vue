@@ -9,13 +9,47 @@
     </div>
     <div class="sidebar-title"><a-icon type="history" /> 最近使用</div>
     <div class="hot-list">
-      <div class="hot-list-item" v-for="(item, index) in 4" :key="index">
-        JSON格式化工具
+      <div
+        class="hot-list-item"
+        v-for="(item, index) in hisArr"
+        :key="index"
+        @click="handleSkip(item.path)"
+      >
+        {{ item.name }}
       </div>
     </div>
     <img src="@/assets/images/animation.gif" />
   </div>
 </template>
+<script lang="ts">
+import Vue from "vue";
+import { hisPathKey } from "@/configs/route.config";
+export default Vue.extend({
+  data() {
+    return {
+      hisArr: [],
+    };
+  },
+  mounted() {
+    this.loadHisPath();
+  },
+  watch: {
+    $route: function () {
+      this.loadHisPath();
+    },
+  },
+  methods: {
+    loadHisPath() {
+      let hisStr = this.$getLocal(hisPathKey);
+      let hisArr = hisStr ? JSON.parse(hisStr) : [];
+      this.hisArr = hisArr;
+    },
+    handleSkip(path: string) {
+      this.$router.push({ path });
+    },
+  },
+});
+</script>
 <style lang="less" scoped>
 @import url("~assets/css/variable.less");
 .sidebar {

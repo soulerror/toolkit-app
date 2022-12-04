@@ -3,6 +3,8 @@ interface Page {
     name: string
 }
 
+const hisPathKey: string = 'tool-history'
+
 const routeMap: Map<string, Page> = new Map([
     ["/tools/JsonPretty", {
         path: "/tools/JsonPretty",
@@ -24,4 +26,4 @@ const routeMap: Map<string, Page> = new Map([
 ]
 )
 
-export default routeMap
+export { routeMap, hisPathKey }
