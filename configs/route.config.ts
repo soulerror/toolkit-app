@@ -26,4 +26,4 @@ const routeMap: Map<string, Page> = new Map([
 ]
 )
 
-export { routeMap, hisPathKey }
+export { routeMap, hisPathKey, Page }

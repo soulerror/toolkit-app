@@ -25,11 +25,13 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '@/plugins/antd-ui',
-    '@/plugins/localstorage',
-    '@/plugins/route',
-    
+    '@/plugins/localstorage'
   ],
-
+  router: {
+    middleware: [
+      'route'
+    ],
+  },
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
@@ -40,9 +42,8 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
+  modules: [  
   ],
-
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     loaders: {
