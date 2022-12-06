@@ -1,29 +1,34 @@
-interface Page {
+export interface Page {
     path: string,
     name: string
 }
 
-const hisPathKey: string = 'tool-history'
-
-const routeMap: Map<string, Page> = new Map([
-    ["/tools/JsonPretty", {
-        path: "/tools/JsonPretty",
+export const routeArr: Array<Page> = [
+    {
+        path: "/JsonPretty",
         name: "JSON格式化工具"
-    }],
-    ["/tools/UrlCodec", {
-        path: "/tools/UrlCodec",
+    }, {
+        path: "/UrlCodec",
         name: "URL编解码"
-    }],
-    ["/tools/Regular",
-        {
-            path: "/tools/Regular",
-            name: "正则表达式验证"
-        }],
-    ["/tools/RgbHex", {
-        path: "/tools/RgbHex",
+    },
+    {
+        path: "/Regular",
+        name: "正则表达式验证"
+    },
+    {
+        path: "/RgbHex",
         name: "RGB HEX互转"
-    }],
+    }
 ]
-)
+//
+export const routeMap: Map<string, Page> = arrayToMap(routeArr);
 
-export { routeMap, hisPathKey, Page }
+
+//数组转map
+function arrayToMap(array: Array<Page>) {
+    let routeMap: Map<string, Page> = new Map();
+    for (const item of array) {
+        routeMap.set(item.path, item)
+    }
+    return routeMap;
+}

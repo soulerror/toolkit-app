@@ -3,8 +3,13 @@
   <div class="sidebar">
     <div class="sidebar-title"><a-icon type="fire" class="ico" /> 热门工具</div>
     <div class="hot-list">
-      <div class="hot-list-item" v-for="(item, index) in 4" :key="index">
-        JSON格式化工具
+      <div
+        class="hot-list-item"
+        v-for="(item, index) in hotList"
+        :key="index"
+        @click="handleSkip(item.path)"
+      >
+        {{ item.name }}
       </div>
     </div>
     <div class="sidebar-title"><a-icon type="history" /> 最近使用</div>
@@ -23,11 +28,13 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
-import { hisPathKey } from "@/configs/route.config";
+import { hisPathKey } from "@/configs/store.config";
+import { hotList } from "@/configs/hot.config";
 export default Vue.extend({
   data() {
     return {
       hisArr: [],
+      hotList,
     };
   },
   mounted() {

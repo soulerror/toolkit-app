@@ -3,7 +3,7 @@
     <!-- 工具集 -->
     <div class="card-box">
       <Card
-        v-for="(item, index) in tools"
+        v-for="(item, index) in routeArr"
         :key="index"
         @click="skipTo(item.path)"
       >
@@ -16,30 +16,7 @@
 <script lang="ts">
 import Vue from "vue";
 import Card from "@/pages/components/Card.vue";
-
-interface Tool {
-  path: string;
-  name: string;
-}
-
-const tools: Tool[] = [
-  {
-    path: "/tools/JsonPretty",
-    name: "Json格式化工具",
-  },
-  {
-    path: "/tools/UrlCodec",
-    name: "Url编解码工具",
-  },
-  {
-    path: "/tools/Regular",
-    name: "正则表达式验证",
-  },
-    {
-    path: "/tools/RgbHex",
-    name: "RGB HEX互转",
-  },
-];
+import { routeArr } from "@/configs/route.config";
 
 export default Vue.extend({
   name: "IndexPage",
@@ -49,12 +26,12 @@ export default Vue.extend({
   layout: "default",
   data() {
     return {
-      tools,
+      routeArr,
     };
   },
   methods: {
-    skipTo(val: string) {
-      this.$router.push({ path: val });
+    skipTo(path: string) {
+      this.$router.push({ path });
     },
   },
 });

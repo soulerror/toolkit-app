@@ -1,10 +1,11 @@
 import { storeLocal, getLocal } from '../plugins/localstorage'
-import { routeMap, hisPathKey, Page } from '@/configs/route.config'
+import { routeMap, Page } from '@/configs/route.config'
+import { hisPathKey } from '@/configs/store.config'
 import { Middleware } from '@nuxt/types'
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css'
 
-NProgress.configure({     
+NProgress.configure({
     easing: 'ease',  // 动画方式    
     speed: 500,  // 递增进度条的速度    
     showSpinner: false, // 是否显示加载ico    
@@ -13,7 +14,7 @@ NProgress.configure({
 })
 
 export default <Middleware>function ({ app }) {
-    app.router?.afterEach((to, from) => {
+    app.router?.afterEach((to) => {
         NProgress.start();
         let hisStr = getLocal(hisPathKey);
         let path = to.path
@@ -28,7 +29,7 @@ export default <Middleware>function ({ app }) {
         }
         storeLocal(hisPathKey, JSON.stringify(hisArr))
     })
-    app.router?.afterEach(()=>{
+    app.router?.afterEach(() => {
         NProgress.done();
     })
 }

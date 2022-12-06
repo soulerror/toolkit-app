@@ -1,7 +1,14 @@
 <template>
   <!-- json格式化 -->
-  <ToolCard class="json" :drawerVisible="visible" @drawerClose="onClose">
-    <section slot="title">Json格式化工具</section>
+  <ToolCard
+    class="json"
+    :drawerVisible="visible"
+    @drawerClose="onClose"
+    :drawerData="parseHistory"
+    @clickDrawerItem="setJsonStrText"
+    @clean="confirmDel"
+  >
+    <section slot="title" class="tool-header">Json格式化工具</section>
     <div class="json-box">
       <div class="input-box">
         <div class="clean-btn" v-show="jsonStr" @click="cleanJson">
@@ -29,28 +36,17 @@
         </div>
       </div>
     </div>
-    <div slot="drawer" class="drawer-box">
-      <div class="scroll-style his-box">
-        <p
-          class="his-list"
-          v-for="(item, index) in parseHistory"
-          :key="index"
-          @click="setJsonStrText(item)"
-        >
-          {{ item }}
-        </p>
-      </div>
-      <div class="bottom-btns">
-        <Button @click="confirmDel"><a-icon type="delete" /> 清空历史 </Button>
-      </div>
-    </div>
   </ToolCard>
 </template>
 <script lang="ts">
 import Vue from "vue";
-import { clipboard, debounce } from "~/utils/utils";
-
-const storeKey: string = "joson-pretty-history";
+import {
+  clipboard,
+  debounce,
+  storeArrayItem,
+  getArrayStore,
+} from "~/utils/utils";
+import { JsonStoreKey } from "@/configs/store.config";
 
 //声明Data
 interface DataType {
@@ -101,15 +97,7 @@ export default Vue.extend({
       let text = this.jsonStr;
       let flag: boolean = this.setClipboardText(this.prettyStr);
       if (flag) {
-        let oldHis: string = this.$getLocal(storeKey);
-        let hisArr: Array<string> = oldHis ? JSON.parse(oldHis) : [];
-        if (hisArr) {
-          let index = hisArr.findIndex((item) => item == text);
-          index != -1 && hisArr.splice(index, 1);
-        }
-        hisArr.unshift(text);
-        console.log(hisArr);
-        this.$storeLocal(storeKey, JSON.stringify(hisArr));
+        storeArrayItem(JsonStoreKey, text);
       }
     },
     setJsonStrText(text: string) {
@@ -132,9 +120,7 @@ export default Vue.extend({
      * 点击展示历史记录
      */
     showHistory() {
-      let hisStr: string = this.$getLocal(storeKey);
-      let hisArr: any = hisStr ? JSON.parse(hisStr) : [];
-      this.parseHistory = hisArr;
+      this.parseHistory = getArrayStore(JsonStoreKey);
       this.visible = true;
     },
     /**
@@ -151,7 +137,7 @@ export default Vue.extend({
         title: "确认删除？",
         content: "删除后不可恢复，确认删除？",
         onOk: () => {
-          this.$storeLocal(storeKey, []);
+          this.$storeLocal(JsonStoreKey, []);
           this.showHistory();
         },
       });
@@ -161,6 +147,7 @@ export default Vue.extend({
 </script>
 <style lang="less" scoped>
 @import url("~assets/css/variable.less");
+@import url("~assets/css/common.less");
 .json {
   .clean-btn {
     position: absolute;
@@ -179,7 +166,6 @@ export default Vue.extend({
   .json-box {
     height: 100%;
     display: flex;
-    justify-content: space-between;
 
     & > div {
       width: 50%;
@@ -218,39 +204,5 @@ export default Vue.extend({
       }
     }
   }
-}
-
-.bottom-btns {
-  height: 60px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0 20px;
-}
-
-.his-title {
-  font-size: 14px;
-}
-
-.drawer-box {
-  height: 100%;
-}
-
-.his-box {
-  height: calc(100% - @button-h - 20px);
-}
-
-.his-list {
-  padding: 12px;
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  cursor: pointer;
-  border-radius: 12px 0 0 12px;
-}
-.his-list:hover {
-  background: @themeColor;
-  color: #fff;
 }
 </style>

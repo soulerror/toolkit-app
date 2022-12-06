@@ -19,7 +19,7 @@ export default Vue.extend({
 <style lang="less" scoped>
 .card {
   height: 100px;
-  // width: 100px;
+  width: 100px;
   width: fit-content;
   background-color: #fff;
   cursor: pointer;
