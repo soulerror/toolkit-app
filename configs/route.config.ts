@@ -1,23 +1,28 @@
 export interface Page {
     path: string,
-    name: string
+    name: string,
+    icon: string
 }
 
 export const routeArr: Array<Page> = [
     {
         path: "/JsonPretty",
-        name: "JSON格式化工具"
+        name: "JSON格式化工具",
+        icon: "json"
     }, {
         path: "/UrlCodec",
-        name: "URL编解码"
+        name: "URL编解码",
+        icon: "url"
     },
     {
         path: "/Regular",
-        name: "正则表达式验证"
+        name: "正则表达式验证",
+        icon: "regular"
     },
     {
         path: "/RgbHex",
-        name: "RGB HEX互转"
+        name: "RGB HEX互转",
+        icon: "rgb"
     }
 ]
 //

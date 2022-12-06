@@ -30,11 +30,19 @@
 import Vue from "vue";
 import { hisPathKey } from "@/configs/store.config";
 import { hotList } from "@/configs/hot.config";
+import { Page } from "~/configs/route.config";
+import { getArrayStore } from "@/utils/utils";
+
+interface DataType {
+  hisArr: Array<Page>;
+  hotList: Array<Page>;
+}
+
 export default Vue.extend({
-  data() {
+  data(): DataType {
     return {
       hisArr: [],
-      hotList,
+      hotList: [...hotList],
     };
   },
   mounted() {
@@ -47,9 +55,7 @@ export default Vue.extend({
   },
   methods: {
     loadHisPath() {
-      let hisStr = this.$getLocal(hisPathKey);
-      let hisArr = hisStr ? JSON.parse(hisStr) : [];
-      this.hisArr = hisArr;
+      this.hisArr = getArrayStore(hisPathKey);
     },
     handleSkip(path: string) {
       this.$router.push({ path });

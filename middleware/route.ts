@@ -16,6 +16,7 @@ NProgress.configure({
 export default <Middleware>function ({ app }) {
     app.router?.afterEach((to) => {
         NProgress.start();
+
         let hisStr = getLocal(hisPathKey);
         let path = to.path
         let hisArr: Array<Page> = hisStr ? JSON.parse(hisStr) : [];

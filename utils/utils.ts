@@ -78,7 +78,7 @@ export function storeArrayItem(storeKey: string, storeValue: string) {
  * 
  * @param storeKey 存储的键
  */
-export function getArrayStore(storeKey: string): Array<string> {
+export function getArrayStore<T>(storeKey: string): Array<T> {
     let hisStr = getLocal(storeKey);
     return hisStr ? JSON.parse(hisStr) : [];
 }

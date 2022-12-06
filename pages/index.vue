@@ -7,7 +7,10 @@
         :key="index"
         @click="skipTo(item.path)"
       >
-        <Button> {{ item.name }}</Button>
+        <img
+          :src="require(`@/assets/svg/${item.icon}.svg`)"
+        />
+        {{ item.name }}
       </Card>
     </div>
   </div>
