@@ -1,6 +1,7 @@
 <template>
   <div class="tool-body">
     <div class="tool-header">
+      <section v-if="!$slots.title" class="tool-title">{{ title }}</section>
       <slot name="title" />
     </div>
     <div class="tool-box">
@@ -42,7 +43,11 @@ export default Vue.extend({
     },
     drawerData: {
       type: Array,
-      default: [],
+      default: () => [],
+    },
+    title: {
+      type: String,
+      default: "",
     },
   },
   methods: {

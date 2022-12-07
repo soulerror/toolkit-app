@@ -6,23 +6,28 @@ export interface Page {
 
 export const routeArr: Array<Page> = [
     {
-        path: "/JsonPretty",
+        path: "/tools/json-pretty",
         name: "JSON格式化工具",
         icon: "json"
     }, {
-        path: "/UrlCodec",
+        path: "tools/url-codec",
         name: "URL编解码",
         icon: "url"
     },
     {
-        path: "/Regular",
+        path: "tools/regular",
         name: "正则表达式验证",
         icon: "regular"
     },
     {
-        path: "/RgbHex",
+        path: "tools/rgb-hex",
         name: "RGB HEX互转",
         icon: "rgb"
+    },
+    {
+        path: "tools/cron-util",
+        name: "Cron表达式工具",
+        icon: 'rgb'
     }
 ]
 //

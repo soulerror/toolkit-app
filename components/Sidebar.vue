@@ -28,10 +28,8 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
-import { hisPathKey } from "@/configs/store.config";
-import { hotList } from "@/configs/hot.config";
-import { Page } from "~/configs/route.config";
-import { getArrayStore } from "@/utils/utils";
+import { PathHisKey, Page, hotList } from "@/configs";
+import { getArrayStore } from "~/utils";
 
 interface DataType {
   hisArr: Array<Page>;
@@ -42,7 +40,7 @@ export default Vue.extend({
   data(): DataType {
     return {
       hisArr: [],
-      hotList: [...hotList],
+      hotList: hotList,
     };
   },
   mounted() {
@@ -55,7 +53,11 @@ export default Vue.extend({
   },
   methods: {
     loadHisPath() {
-      this.hisArr = getArrayStore(hisPathKey);
+      let hisArr: Array<Page> = getArrayStore(PathHisKey);
+      if (hisArr.length > 4) {
+        hisArr.splice(4);
+      }
+      this.hisArr = hisArr;
     },
     handleSkip(path: string) {
       this.$router.push({ path });

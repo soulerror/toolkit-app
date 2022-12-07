@@ -1,6 +1,5 @@
-import { storeLocal, getLocal } from '../plugins/localstorage'
-import { routeMap, Page } from '@/configs/route.config'
-import { hisPathKey } from '@/configs/store.config'
+import { storeLocal, getLocal } from '@/plugins/localstorage'
+import { routeMap, Page, PathHisKey } from '@/configs'
 import { Middleware } from '@nuxt/types'
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css'
@@ -16,8 +15,7 @@ NProgress.configure({
 export default <Middleware>function ({ app }) {
     app.router?.afterEach((to) => {
         NProgress.start();
-
-        let hisStr = getLocal(hisPathKey);
+        let hisStr = getLocal(PathHisKey);
         let path = to.path
         let hisArr: Array<Page> = hisStr ? JSON.parse(hisStr) : [];
         if (hisArr && routeMap.has(path)) {
@@ -28,7 +26,7 @@ export default <Middleware>function ({ app }) {
             let page = routeMap.get(path);
             page && + hisArr.unshift(page);
         }
-        storeLocal(hisPathKey, JSON.stringify(hisArr))
+        storeLocal(PathHisKey, JSON.stringify(hisArr))
     })
     app.router?.afterEach(() => {
         NProgress.done();

@@ -2,13 +2,13 @@
   <!-- json格式化 -->
   <ToolCard
     class="json"
+    title="Json格式化工具"
     :drawerVisible="visible"
     @drawerClose="onClose"
     :drawerData="parseHistory"
     @clickDrawerItem="setJsonStrText"
     @clean="confirmDel"
   >
-    <section slot="title" class="tool-header">Json格式化工具</section>
     <div class="json-box">
       <div class="input-box">
         <div class="clean-btn" v-show="jsonStr" @click="cleanJson">
@@ -45,8 +45,8 @@ import {
   debounce,
   storeArrayItem,
   getArrayStore,
-} from "~/utils/utils";
-import { JsonStoreKey } from "@/configs/store.config";
+} from "~/utils";
+import { JsonStoreKey, JsonMeta } from "~/configs";
 
 //声明Data
 interface DataType {
@@ -58,6 +58,9 @@ interface DataType {
 }
 
 export default Vue.extend({
+  head() {
+    return JsonMeta;
+  },
   layout: "default",
   components: {},
   data(): DataType {

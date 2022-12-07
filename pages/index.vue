@@ -7,9 +7,7 @@
         :key="index"
         @click="skipTo(item.path)"
       >
-        <img
-          :src="require(`@/assets/svg/${item.icon}.svg`)"
-        />
+        <img :src="require(`@/assets/svg/${item.icon}.svg`)" />
         {{ item.name }}
       </Card>
     </div>
@@ -19,9 +17,14 @@
 <script lang="ts">
 import Vue from "vue";
 import Card from "@/pages/components/Card.vue";
-import { routeArr } from "@/configs/route.config";
+import { routeArr } from "@/configs";
 
 export default Vue.extend({
+  head() {
+    return {
+      title:"在线工具"
+    };
+  },
   name: "IndexPage",
   components: {
     Card,

@@ -1,13 +1,13 @@
  <template>
   <!-- Url编解码工具 -->
   <ToolCard
+    title="Url编解码工具"
     :drawerVisible="visible"
     @drawerClose="onClose"
     :drawerData="history"
     @clickDrawerItem="setUrl"
     @clean="confirmDel"
   >
-    <section slot="title" class="tool-header">Url编解码工具</section>
     <div class="url-box">
       <div class="input-box">
         <div class="clean-btn" v-show="url" @click="setUrl()">
@@ -44,8 +44,9 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
-import { clipboard, storeArrayItem, getArrayStore } from "~/utils/utils";
-import { UrlStoreKey } from "@/configs/store.config";
+import { clipboard, storeArrayItem, getArrayStore } from "~/utils";
+import { UrlStoreKey, UrlCodecMeta } from "@/configs";
+
 interface DataType {
   url: string;
   result: string;
@@ -59,6 +60,9 @@ const enum Codec {
 }
 
 export default Vue.extend({
+  head() {
+    return UrlCodecMeta;
+  },
   data(): DataType {
     return {
       url: "",

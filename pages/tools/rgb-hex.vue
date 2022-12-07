@@ -1,7 +1,6 @@
 <template>
   <!-- rgb颜色转换 -->
-  <ToolCard>
-    <section slot="title">RGB Hex互转</section>
+  <ToolCard title="RGB Hex互转">
     <div class="rgb-content">
       <a-form layout="horizontal" style="width:200px">
         <a-form-item label="RGB">
