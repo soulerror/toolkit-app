@@ -176,7 +176,7 @@ export default Vue.extend({
     }
 
     .input-box {
-      border-right: 1px solid @borderColor;
+      border-right:@border;
       position: relative;
     }
 

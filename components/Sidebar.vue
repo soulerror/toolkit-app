@@ -73,7 +73,7 @@ export default Vue.extend({
   // height: fit-content;
   background-color: #fff;
   border-radius: 12px;
-  border: 1px solid @borderColor;
+  border:@border;
   box-shadow: rgba(35, 46, 67, 6%) 0px 4px 10px;
   position: relative;
 

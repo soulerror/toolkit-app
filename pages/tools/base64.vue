@@ -1,16 +1,16 @@
  <template>
   <!-- Url编解码工具 -->
   <ToolCard
-    title="Url编解码工具"
+    title="Base64编解码工具"
     :drawerVisible="visible"
     @drawerClose="onClose"
     :drawerData="history"
-    @clickDrawerItem="setUrl"
+    @clickDrawerItem="setContent"
     @clean="confirmDel"
   >
     <div class="url-box">
       <div class="input-box">
-        <div class="clean-btn" v-show="url" @click="setUrl()">
+        <div class="clean-btn" v-show="content" @click="setContent()">
           <a-icon type="close" />
         </div>
         <textarea
@@ -18,15 +18,15 @@
           contenteditable="true"
           aria-multiline="true"
           white-space="pre-wap"
-          placeholder="请输入需要编解码的URL"
-          v-model="url"
+          placeholder="请输入需要编解码的内容"
+          v-model="content"
         ></textarea>
         <div class="bottom-btns">
-          <Button @click="urlCodec('ENCODE')"
-            ><a-icon type="lock" /> URL编码
+          <Button @click="contentCodec('ENCODE')"
+            ><a-icon type="lock" /> Base64编码
           </Button>
-          <Button @click="urlCodec('DECODE')"
-            ><a-icon type="unlock" /> URL解码
+          <Button @click="contentCodec('DECODE')"
+            ><a-icon type="unlock" /> Base64解码
           </Button>
         </div>
       </div>
@@ -45,10 +45,11 @@
 <script lang="ts">
 import Vue from "vue";
 import { clipboard, storeArrayItem, getArrayStore } from "~/utils";
-import { UrlStoreKey, UrlCodecMeta } from "@/configs";
+import { Base64StoreKey, UrlCodecMeta } from "@/configs";
+import { encode, decode } from "js-base64";
 
 interface DataType {
-  url: string;
+  content: string;
   result: string;
   visible: boolean;
   history: Array<string>;
@@ -65,43 +66,42 @@ export default Vue.extend({
   },
   data(): DataType {
     return {
-      url: "",
+      content: "",
       result: "",
       visible: false,
       history: [],
     };
   },
   methods: {
-    setUrl(val: string) {
-      this.url = val ? val : "";
+    setContent(val: string) {
+      this.content = val ? val : "";
       this.result = "";
     },
-
     /**
      * 解码
      */
-    urlCodec(type: Codec) {
+    contentCodec(type: Codec) {
       try {
         switch (type) {
           case Codec.DECODE:
-            this.result = decodeURI(this.url);
+            this.result = decode(this.content);
             return;
           case Codec.ENCODE:
-            this.result = encodeURI(this.url);
+            this.result = encode(this.content);
             return;
         }
       } catch (e) {
-        this.$message.error("URL格式错误, 无法解析的URL");
+        this.$message.error("格式错误, 无法对内容加解密");
       }
     },
     /**
      * 点击拷贝按钮
      */
     onCopyText() {
-      let text = this.url;
+      let text = this.content;
       let flag: boolean = this.setClipboardText(this.result);
       if (flag) {
-        storeArrayItem(UrlStoreKey, text);
+        storeArrayItem(Base64StoreKey, text);
       }
     },
     /**
@@ -114,7 +114,7 @@ export default Vue.extend({
      * 点击展示历史记录
      */
     showHistory() {
-      this.history = getArrayStore(UrlStoreKey);
+      this.history = getArrayStore(Base64StoreKey);
       this.visible = true;
     },
     /**
@@ -131,7 +131,7 @@ export default Vue.extend({
         title: "确认删除？",
         content: "删除后不可恢复，确认删除？",
         onOk: () => {
-          this.$storeLocal(UrlStoreKey, []);
+          this.$storeLocal(Base64StoreKey, []);
           this.showHistory();
         },
       });
@@ -154,7 +154,7 @@ export default Vue.extend({
     width: 50%;
   }
   & > div:first-of-type {
-    border-right: @border;
+    border-right: @border
   }
 
   .bottom-btns {

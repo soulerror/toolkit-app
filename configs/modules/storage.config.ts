@@ -7,3 +7,5 @@ export const PathHisKey: string = 'history:tool:visit'
 // url编解码记录
 export const UrlStoreKey: string = 'history:tool:urlCodec'
 
+// base64编解码记录
+export const Base64StoreKey: string = 'history:tool:base64'
