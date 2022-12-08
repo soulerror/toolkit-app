@@ -40,3 +40,17 @@ export const UrlCodecMeta: Meta = {
     ]
 }
 
+export const RegularMeta: Meta = {
+    title: "在线正则表达式匹配校验工具",
+    meta: [
+        {
+            name: "keywords",
+            content: "在线,url编码,url解码,url编解码,url编码解码,在线工具,在线url编码工具,在线url解码工具,url在线,url转换,url解析,url翻译,url codec tools online"
+        },
+        {
+            name: "description",
+            hid: "description",
+            content: "在线,url编码,url解码,url编解码,url编码解码,在线工具,在线url编码工具,在线url解码工具,url在线,url转换,url解析,url翻译,url codec tools online"
+        }
+    ]
+}

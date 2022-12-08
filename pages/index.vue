@@ -20,11 +20,6 @@ import Card from "@/pages/components/Card.vue";
 import { routeArr } from "@/configs";
 
 export default Vue.extend({
-  head() {
-    return {
-      title:"在线工具"
-    };
-  },
   name: "IndexPage",
   components: {
     Card,

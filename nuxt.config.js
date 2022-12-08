@@ -1,14 +1,15 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: '开发工具集',
+    title: '在线小工具',
     htmlAttrs: {
       lang: 'en'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { name: 'keyword', content: "在线工具,开发人员工具,代码格式化、压缩、加密、解密,编码,解码,进制转换,二维码,时间戳,rgb,hex,cron表达式,base64,正则表达式,json格式化,照片压缩,pdf合并" },
+      { hid: 'description', name: 'description', content:"在线工具,开发人员工具,代码格式化、压缩、加密、解密,编码,解码,进制转换,二维码,时间戳,rgb,hex,cron表达式,base64,正则表达式,json格式化,照片压缩,pdf合并" },
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
@@ -42,7 +43,7 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [  
+  modules: [
   ],
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

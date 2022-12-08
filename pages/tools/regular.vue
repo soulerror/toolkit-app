@@ -29,6 +29,8 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
+import { RegularMeta } from "@/configs";
+
 interface DataType {
   content: string;
   regular: string;
@@ -37,6 +39,7 @@ interface DataType {
   global: boolean;
 }
 export default Vue.extend({
+  head: () => RegularMeta,
   data(): DataType {
     return {
       content: "121321科技了看大家啊是lkfj1231231lkdja f2呵呵呵的213额23",
