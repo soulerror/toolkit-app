@@ -7,6 +7,12 @@
     <div class="tool-box">
       <slot />
       <div
+        :class="`tool-sidebar-mask ${
+          drawerVisible ? 'tool-sidebar-mask-show' : 'tool-sidebar-mask-hide'
+        }`"
+        @click="_drawerClose"
+      />
+      <div
         :class="`tool-sidebar ${
           drawerVisible ? 'tool-sidebar-show' : 'tool-sidebar-hide'
         }`"
@@ -25,7 +31,7 @@
             {{ item }}
           </p>
         </div>
-        <div class="bottom-btns">
+        <div class="bottom-btns bottom-btns-right">
           <Button @click="_clean"><a-icon type="delete" /> 清空历史 </Button>
         </div>
         <slot name="drawer" />
@@ -71,17 +77,34 @@ export default Vue.extend({
   position: relative;
   overflow: hidden;
 }
+.tool-box {
+  position: relative;
+}
 .tool-sidebar {
   position: absolute;
   height: 100%;
   width: @width;
   padding-top: 30px;
   top: 0;
-  border-left:@border;
+  border-left: @border;
   background-color: #fff;
   box-shadow: @shadowColor;
   border-radius: 14px 0 0 14px;
   transition: all 1s ease;
+}
+.tool-sidebar-mask {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: rgba(0, 0, 0, .2);
+  top: 0;
+  transition: all 350ms ease;
+}
+.tool-sidebar-mask-hide {
+  right: -100%;
+}
+.tool-sidebar-mask-show {
+  right: 0;
 }
 .tool-sidebar-show {
   right: 0;
@@ -103,18 +126,6 @@ export default Vue.extend({
 .clean-btn:hover {
   background-color: #dcdfe6;
 }
-.drawer-transition-enter-active,
-.drawer-transition-leave-active {
-  right: 0;
-  transition: all 1s ease;
-}
-
-.drawer-transition-enter-from,
-.drawer-transition-leave-to {
-  right: -@width;
-  transition: all 1s ease;
-}
-
 .his-box {
   height: calc(100% - @button-h - 20px);
 }

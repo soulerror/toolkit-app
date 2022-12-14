@@ -38,9 +38,7 @@ const getLocal = (key: string) => {
 const storeArrayItem = (storeKey: string, storeValue: string) => {
     let oldHis = getLocal(storeKey)
     let hisArr: Array<string> = oldHis ? JSON.parse(oldHis) : [];
-    if (hisArr) {
-        console.log(hisArr);
-        
+    if (hisArr) {        
         let index = hisArr.findIndex((item) => item == storeValue);
         index != -1 && hisArr.splice(index, 1);
     }
