@@ -1,6 +1,5 @@
 
 import { message } from 'ant-design-vue';
-import { getLocal, storeLocal } from '@/plugins/localstorage'
 /**
  * 防抖原理：一定时间内，只有最后一次操作，再过wait毫秒后才执行函数
  * 
@@ -58,27 +57,3 @@ export function clipboard(val: string) {
     return false;
 }
 
-/**
- * 
- * @param storeKey 存储的键
- * @param storeValue 存储的值
- */
-export function storeArrayItem(storeKey: string, storeValue: string) {
-    let oldHis = getLocal(storeKey)
-    let hisArr: Array<string> = oldHis ? JSON.parse(oldHis) : [];
-    if (hisArr) {
-        let index = hisArr.findIndex((item) => item == storeValue);
-        index != -1 && hisArr.splice(index, 1);
-    }
-    hisArr.unshift(storeValue);
-    storeLocal(storeKey, JSON.stringify(hisArr))
-}
-
-/**
- * 
- * @param storeKey 存储的键
- */
-export function getArrayStore<T>(storeKey: string): Array<T> {
-    let hisStr = getLocal(storeKey);
-    return hisStr ? JSON.parse(hisStr) : [];
-}

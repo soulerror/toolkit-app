@@ -44,7 +44,7 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
-import { clipboard, storeArrayItem, getArrayStore } from "~/utils";
+import { clipboard } from "~/utils";
 import { Base64StoreKey, UrlCodecMeta } from "@/configs";
 import { encode, decode } from "js-base64";
 
@@ -101,7 +101,7 @@ export default Vue.extend({
       let text = this.content;
       let flag: boolean = this.setClipboardText(this.result);
       if (flag) {
-        storeArrayItem(Base64StoreKey, text);
+        this.$storeArrayItem(Base64StoreKey, text);
       }
     },
     /**
@@ -114,7 +114,7 @@ export default Vue.extend({
      * 点击展示历史记录
      */
     showHistory() {
-      this.history = getArrayStore(Base64StoreKey);
+      this.history = this.$getArrayStore(Base64StoreKey);
       this.visible = true;
     },
     /**
@@ -154,7 +154,7 @@ export default Vue.extend({
     width: 50%;
   }
   & > div:first-of-type {
-    border-right: @border
+    border-right: @border;
   }
 
   .bottom-btns {

@@ -29,6 +29,37 @@ const getLocal = (key: string) => {
     }
 }
 
+
+/**
+ * 
+ * @param storeKey 存储的键
+ * @param storeValue 存储的值
+ */
+const storeArrayItem = (storeKey: string, storeValue: string) => {
+    let oldHis = getLocal(storeKey)
+    let hisArr: Array<string> = oldHis ? JSON.parse(oldHis) : [];
+    if (hisArr) {
+        console.log(hisArr);
+        
+        let index = hisArr.findIndex((item) => item == storeValue);
+        index != -1 && hisArr.splice(index, 1);
+    }
+    hisArr.unshift(storeValue);
+    storeLocal(storeKey, JSON.stringify(hisArr))
+}
+
+/**
+ * 
+ * @param storeKey 存储的键
+ */
+const getArrayStore = <T>(storeKey: string): Array<T> => {
+    let hisStr = getLocal(storeKey);
+    return hisStr ? JSON.parse(hisStr) : [];
+}
+
 Vue.prototype.$storeLocal = storeLocal
 Vue.prototype.$getLocal = getLocal
-export { getLocal, storeLocal };
+Vue.prototype.$getArrayStore = getArrayStore
+Vue.prototype.$storeArrayItem = storeArrayItem
+
+export { getLocal, storeLocal, storeArrayItem, getArrayStore };

@@ -44,7 +44,7 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
-import { clipboard, storeArrayItem, getArrayStore } from "~/utils";
+import { clipboard } from "~/utils";
 import { UrlStoreKey, UrlCodecMeta } from "@/configs";
 
 interface DataType {
@@ -101,7 +101,7 @@ export default Vue.extend({
       let text = this.url;
       let flag: boolean = this.setClipboardText(this.result);
       if (flag) {
-        storeArrayItem(UrlStoreKey, text);
+        this.$storeArrayItem(UrlStoreKey, text);
       }
     },
     /**
@@ -114,7 +114,7 @@ export default Vue.extend({
      * 点击展示历史记录
      */
     showHistory() {
-      this.history = getArrayStore(UrlStoreKey);
+      this.history = this.$getArrayStore(UrlStoreKey);
       this.visible = true;
     },
     /**

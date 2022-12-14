@@ -40,12 +40,7 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
-import {
-  clipboard,
-  debounce,
-  storeArrayItem,
-  getArrayStore,
-} from "~/utils";
+import { clipboard, debounce } from "~/utils";
 import { JsonStoreKey, JsonMeta } from "~/configs";
 
 //声明Data
@@ -100,7 +95,7 @@ export default Vue.extend({
       let text = this.jsonStr;
       let flag: boolean = this.setClipboardText(this.prettyStr);
       if (flag) {
-        storeArrayItem(JsonStoreKey, text);
+        this.$storeArrayItem(JsonStoreKey, text);
       }
     },
     setJsonStrText(text: string) {
@@ -123,7 +118,7 @@ export default Vue.extend({
      * 点击展示历史记录
      */
     showHistory() {
-      this.parseHistory = getArrayStore(JsonStoreKey);
+      this.parseHistory = this.$getArrayStore(JsonStoreKey);
       this.visible = true;
     },
     /**
@@ -176,7 +171,7 @@ export default Vue.extend({
     }
 
     .input-box {
-      border-right:@border;
+      border-right: @border;
       position: relative;
     }
 

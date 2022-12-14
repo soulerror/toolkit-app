@@ -36,7 +36,7 @@ export const routeArr: Array<Page> = [
     },
     {
         path: "/tools/qrcode",
-        name: "二维码生成识别",
+        name: "二维码生成",
         icon: 'tools'
     }
 ]

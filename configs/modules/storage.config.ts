@@ -9,3 +9,7 @@ export const UrlStoreKey: string = 'history:tool:urlCodec'
 
 // base64编解码记录
 export const Base64StoreKey: string = 'history:tool:base64'
+
+//二维码生成记录
+export const QrCodeStoreKey: string = 'history:tool:qrcode'
+

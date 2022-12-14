@@ -29,7 +29,6 @@
 <script lang="ts">
 import Vue from "vue";
 import { PathHisKey, Page, hotList } from "@/configs";
-import { getArrayStore } from "~/utils";
 
 interface DataType {
   hisArr: Array<Page>;
@@ -53,7 +52,7 @@ export default Vue.extend({
   },
   methods: {
     loadHisPath() {
-      let hisArr: Array<Page> = getArrayStore(PathHisKey);
+      let hisArr: Array<Page> = this.$getArrayStore(PathHisKey);
       if (hisArr.length > 4) {
         hisArr.splice(4);
       }
@@ -73,7 +72,7 @@ export default Vue.extend({
   // height: fit-content;
   background-color: #fff;
   border-radius: 12px;
-  border:@border;
+  border: @border;
   box-shadow: rgba(35, 46, 67, 6%) 0px 4px 10px;
   position: relative;
 
