@@ -1,10 +1,12 @@
 <template>
   <ToolCard
     title="二维码生成识别工具"
+    confirmable
     :drawerVisible="drawerVisibility"
     @drawerClose="onClose"
-    :drawerData="generateHis"
+    :drawerData="textHis"
     @clickDrawerItem="setQrCodeText"
+    @confirmClean="confirmClean"
   >
     <div class="qr-code-box">
       <div class="input-box">
@@ -80,11 +82,12 @@ var canvas: any = null;
 
 interface DataType {
   text: string;
-  visibility: boolean;
-  drawerVisibility: boolean;
+  visibility: Boolean;
+  drawerVisibility: Boolean;
   generateHis: Array<StoreType>;
   codeOptions: QrCode.QRCodeRenderersOptions;
   sizeOptions: Array<Number>;
+  textHis: Array<String>;
 }
 
 const defaultOptions: QrCode.QRCodeRenderersOptions = {
@@ -118,6 +121,7 @@ export default Vue.extend({
         ...defaultOptions,
       },
       sizeOptions,
+      textHis: [],
     };
   },
   mounted() {
@@ -136,7 +140,11 @@ export default Vue.extend({
           if (error) this.$message.error("生成二维码失败,请重试");
           else {
             this.visibility = true;
-            this.$storeArrayItem(QrCodeStoreKey, text);
+
+            this.$storeArrayItem(QrCodeStoreKey, {
+              value: text,
+              config: this.codeOptions,
+            }) as StoreType;
           }
         });
       else this.$message.error("请输入需要生成二维码的字符");
@@ -155,17 +163,25 @@ export default Vue.extend({
         });
       else this.$message.error("请输入需要生成二维码的字符");
     },
-    setQrCodeText(text?: string) {
+    setQrCodeText(text?: string, index?: number) {
       this.text = text ? text : "";
+      this.codeOptions =
+        typeof index === "number"
+          ? this.generateHis[index].config
+          : defaultOptions;
     },
     onClose() {
       this.drawerVisibility = false;
     },
     showHistory() {
-      this.generateHis = this.$getArrayStore(
-        QrCodeStoreKey
-      ) as Array<StoreType>;
+      let hisArr = this.$getArrayStore(QrCodeStoreKey) as Array<StoreType>;
+      this.textHis = hisArr.map((item) => item.value);
+      this.generateHis = hisArr;
       this.drawerVisibility = true;
+    },
+    confirmClean() {
+      this.$storeLocal(QrCodeStoreKey, []);
+      this.showHistory();
     },
   },
 });
@@ -201,9 +217,14 @@ export default Vue.extend({
     justify-content: center;
     flex-direction: column;
 
+    .code-box-parent {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     .code-box {
       flex: 1;
-
       .canvas-box {
         width: 302px;
         height: 302px;

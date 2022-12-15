@@ -11,6 +11,7 @@
     "esModuleInterop": true,
     "allowJs": true,
     "sourceMap": true,
+    "jsx": "preserve",
     "strict": true,
     "noEmit": true,
     "experimentalDecorators": true,

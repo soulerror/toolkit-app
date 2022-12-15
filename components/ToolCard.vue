@@ -25,7 +25,7 @@
             class="his-list"
             v-for="(item, index) in drawerData"
             :key="index"
-            @click="_drawerItemClick(item)"
+            @click="_drawerItemClick(item, index)"
             :title="item"
           >
             {{ item }}
@@ -39,7 +39,7 @@
     </div>
   </div>
 </template>
-<script lang="ts">
+<script lang="tsx">
 import Vue from "vue";
 export default Vue.extend({
   props: {
@@ -55,16 +55,30 @@ export default Vue.extend({
       type: String,
       default: "",
     },
+    confirmable: {
+      type: Boolean,
+      default: false,
+    },
   },
   methods: {
     _drawerClose() {
       this.$emit("drawerClose");
     },
-    _drawerItemClick(item: any) {
-      this.$emit("clickDrawerItem", item);
+    _drawerItemClick(item: any, index: number) {
+      console.log(index,"index");
+      this.$emit("clickDrawerItem", item, index);
     },
     _clean() {
-      this.$emit("clean");
+      if (this.confirmable) {
+        const modal = this.$confirm({
+          title: "确认删除？",
+          content: "删除后不可恢复，确认删除？",
+          onOk: () => {
+            this.$emit("confirmClean");
+            modal.destroy();
+          },
+        });
+      } else this.$emit("clean");
     },
   },
 });
