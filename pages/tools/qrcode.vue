@@ -17,15 +17,29 @@
           class="code-input"
           placeholder="请输入需要生成二维码的文本 最多1000个字符"
         ></a-textarea>
+        <div class="bottom-btns bottom-btns-right">
+          <Button @click="generateQrCode"
+            ><a-icon type="qrcode" /> 生成二维码</Button
+          >
+        </div>
+      </div>
+      <div class="output-box">
         <div class="config-card">
           <span>二维码配置</span>
           <div class="config-form">
-            <a-form layout="inline">
-              <a-form-item label="颜色">
-                <ColorPicker v-model="downloadConfig.color.dark" />
+            <a-form :colon="false" layout="inline">
+              <a-form-item>
+                <template #label>
+                  <a-icon type="bg-colors" /> 二维码颜色
+                </template>
+                <ColorPicker
+                  popper-class="color-pick-box"
+                  v-model="codeOptions.color.dark"
+                />
               </a-form-item>
-              <a-form-item label="大小">
-                <a-select style="width: 120px" v-model="downloadConfig.width">
+              <a-form-item>
+                <template #label><a-icon type="font-size" /> 下载规格</template>
+                <a-select style="width: 80px" v-model="codeOptions.width">
                   <a-select-option
                     v-for="(size, index) in sizeOptions"
                     :key="index"
@@ -35,27 +49,16 @@
                   </a-select-option>
                 </a-select>
               </a-form-item>
-              <a-form-item label="像素间隔">
-                <a-input v-model="downloadConfig.margin"></a-input>
-              </a-form-item>
-              <a-form-item label="大小">
-                <a-input></a-input>
-              </a-form-item>
             </a-form>
           </div>
         </div>
-        <div class="bottom-btns bottom-btns-right">
-          <Button @click="generateQrCode"
-            ><a-icon type="qrcode" /> 生成二维码</Button
-          >
-        </div>
-      </div>
-      <div class="output-box">
-        <div class="code-box">
+
+        <Card title="二维码" class="code-box">
           <div class="canvas-box">
             <canvas id="code" v-show="visibility"></canvas>
           </div>
-        </div>
+        </Card>
+
         <div class="bottom-btns">
           <Button @click="downloadPng"
             ><a-icon type="download" /> 下载二维码</Button
@@ -76,22 +79,26 @@ import { ColorPicker } from "element-ui";
 var canvas: any = null;
 
 interface DataType {
-  width: number | undefined;
   text: string;
   visibility: boolean;
   drawerVisibility: boolean;
-  generateHis: Array<string>;
-  downloadConfig: QrCode.QRCodeRenderersOptions;
+  generateHis: Array<StoreType>;
+  codeOptions: QrCode.QRCodeRenderersOptions;
   sizeOptions: Array<Number>;
 }
 
-const defaultOption: QrCode.QRCodeRenderersOptions = {
-  width: 400,
+const defaultOptions: QrCode.QRCodeRenderersOptions = {
+  width: 300,
   scale: 1,
   color: {
     dark: "",
   },
 };
+
+interface StoreType {
+  value: string;
+  config: QrCode.QRCodeRenderersOptions;
+}
 
 const sizeOptions: Array<Number> = [
   100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200,
@@ -103,13 +110,12 @@ export default Vue.extend({
   },
   data(): DataType {
     return {
-      width: 200,
       text: "",
       visibility: false,
       drawerVisibility: false,
       generateHis: [],
-      downloadConfig: {
-        ...defaultOption,
+      codeOptions: {
+        ...defaultOptions,
       },
       sizeOptions,
     };
@@ -126,7 +132,7 @@ export default Vue.extend({
     generateQrCode(text?: string) {
       text = text ? text : this.text;
       if (text)
-        QrCode.toCanvas(canvas, text, defaultOption, (error) => {
+        QrCode.toCanvas(canvas, text, this.codeOptions, (error) => {
           if (error) this.$message.error("生成二维码失败,请重试");
           else {
             this.visibility = true;
@@ -136,10 +142,10 @@ export default Vue.extend({
       else this.$message.error("请输入需要生成二维码的字符");
     },
     downloadPng() {
-      let { width, text } = this;
+      let { text } = this;
       let cav: any = document.createElement("canvas");
       if (text)
-        QrCode.toCanvas(cav, text, this.downloadConfig, (error) => {
+        QrCode.toCanvas(cav, text, this.codeOptions, (error) => {
           if (!error) {
             let doc = document.createElement("a");
             doc.href = cav.toDataURL();
@@ -156,7 +162,9 @@ export default Vue.extend({
       this.drawerVisibility = false;
     },
     showHistory() {
-      this.generateHis = this.$getArrayStore(QrCodeStoreKey);
+      this.generateHis = this.$getArrayStore(
+        QrCodeStoreKey
+      ) as Array<StoreType>;
       this.drawerVisibility = true;
     },
   },
@@ -175,17 +183,16 @@ export default Vue.extend({
     padding: 0 20px;
   }
   .input-box {
-    border-right: @border;
     display: flex;
     flex-direction: column;
     position: relative;
     padding-top: 30px;
 
     .code-input {
-      height: 40%;
       resize: none;
       margin: 0 auto;
       display: block;
+      flex: 1;
     }
   }
   .output-box {
@@ -196,15 +203,10 @@ export default Vue.extend({
 
     .code-box {
       flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
 
       .canvas-box {
-        width: 402px;
-        height: 402px;
-        border-radius: 12px;
-        border: @border;
+        width: 302px;
+        height: 302px;
       }
       #code {
         z-index: -1;
@@ -213,8 +215,8 @@ export default Vue.extend({
   }
 
   .config-card {
-    margin:30px 0;
-    flex: 1;
+    margin: 30px 0;
+    height: 200px;
     border: @border;
     border-radius: 12px;
 
@@ -232,10 +234,14 @@ export default Vue.extend({
     height: 100%;
     padding: 1em;
   }
-  .clean-btn{
-    right:25px;
-    top:35px;
-    z-index:100;
+  .clean-btn {
+    right: 25px;
+    top: 35px;
+    z-index: 100;
+  }
+
+  .color-pick-box {
+    width: 800px;
   }
 }
 </style>

@@ -35,14 +35,19 @@ const getLocal = (key: string) => {
  * @param storeKey 存储的键
  * @param storeValue 存储的值
  */
-const storeArrayItem = (storeKey: string, storeValue: string) => {
+const storeArrayItem = <T>(storeKey: string, storeValue: T): void => {
+    let strValue: string;
+    if (typeof storeValue != 'string')
+        strValue = JSON.stringify(storeValue)
+    else
+        strValue = storeValue
     let oldHis = getLocal(storeKey)
     let hisArr: Array<string> = oldHis ? JSON.parse(oldHis) : [];
-    if (hisArr) {        
-        let index = hisArr.findIndex((item) => item == storeValue);
+    if (hisArr) {
+        let index = hisArr.findIndex((item) => item == strValue);
         index != -1 && hisArr.splice(index, 1);
     }
-    hisArr.unshift(storeValue);
+    hisArr.unshift(strValue);
     storeLocal(storeKey, JSON.stringify(hisArr))
 }
 

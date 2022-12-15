@@ -96,7 +96,7 @@ export default Vue.extend({
   height: 100%;
   width: 100%;
   position: absolute;
-  background: rgba(0, 0, 0, .2);
+  background: rgba(0, 0, 0, 0.2);
   top: 0;
   transition: all 350ms ease;
 }

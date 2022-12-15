@@ -21,7 +21,7 @@
           placeholder="请输入需要编解码的内容"
           v-model="content"
         ></textarea>
-        <div class="bottom-btns">
+        <div class="bottom-btns bottom-btns-right">
           <Button @click="contentCodec('ENCODE')"
             ><a-icon type="lock" /> Base64编码
           </Button>
@@ -144,10 +144,11 @@ export default Vue.extend({
 .url-box {
   display: flex;
   height: 100%;
-
   .input-box {
     border-right: @border;
     position: relative;
+    display: flex;
+    flex-direction: column;
   }
 
   & > div {
@@ -157,20 +158,12 @@ export default Vue.extend({
     border-right: @border;
   }
 
-  .bottom-btns {
-    height: 60px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 0 20px;
-  }
-
   .url-input {
     white-space: pre-wrap;
     outline: none;
     border: none;
     width: 100%;
-    height: calc(100% - @button-h - 20px);
+    flex: 1;
     padding: 10px;
     overflow-y: auto;
     font-size: 14px;
