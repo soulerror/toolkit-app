@@ -26,8 +26,7 @@
         </div>
       </div>
       <div class="output-box">
-        <div class="config-card">
-          <span>二维码配置</span>
+        <Card title="二维码配置" class="config-card">
           <div class="config-form">
             <a-form :colon="false" layout="inline">
               <a-form-item>
@@ -53,9 +52,9 @@
               </a-form-item>
             </a-form>
           </div>
-        </div>
+        </Card>
 
-        <Card title="二维码" class="code-box">
+        <Card title="二维码预览" class="code-box">
           <div class="canvas-box">
             <canvas id="code" v-show="visibility"></canvas>
           </div>
@@ -136,17 +135,21 @@ export default Vue.extend({
     generateQrCode(text?: string) {
       text = text ? text : this.text;
       if (text)
-        QrCode.toCanvas(canvas, text, this.codeOptions, (error) => {
-          if (error) this.$message.error("生成二维码失败,请重试");
-          else {
-            this.visibility = true;
-
-            this.$storeArrayItem(QrCodeStoreKey, {
-              value: text,
-              config: this.codeOptions,
-            }) as StoreType;
+        QrCode.toCanvas(
+          canvas,
+          text,
+          { ...this.codeOptions, width: defaultOptions.width },
+          (error) => {
+            if (error) this.$message.error("生成二维码失败,请重试");
+            else {
+              this.visibility = true;
+              this.$storeArrayItem(QrCodeStoreKey, {
+                value: text,
+                config: this.codeOptions,
+              }) as StoreType;
+            }
           }
-        });
+        );
       else this.$message.error("请输入需要生成二维码的字符");
     },
     downloadPng() {
@@ -245,7 +248,6 @@ export default Vue.extend({
       width: 100%;
       display: block;
       line-height: 30px;
-      font-weight: bold;
       border-bottom: @border;
       padding: 0 1em;
     }

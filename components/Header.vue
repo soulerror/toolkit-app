@@ -1,12 +1,15 @@
 <template>
   <div class="header">
-    <span @click="handleClickIcon">
+    <div @click="handleClickIcon" class="logo-box">
       <img class="logo" src="@/assets/svg/tool.svg" />
-      <p>常用小工具</p>
-    </span>
+      <div class="head-tab">
+        <span>Tools</span>
+        <p>常用小工具</p>
+      </div>
+    </div>
   </div>
 </template>
-<script lang="ts">
+<script lang="tsx">
 import Vue from "vue";
 export default Vue.extend({
   methods: {
@@ -27,16 +30,45 @@ export default Vue.extend({
   border-bottom: 1px solid rgb(242, 243, 245);
   padding: 0 30px;
   display: flex;
-  line-height: @header-1st-h;
+  align-items: center;
 
-  span {
-    cursor: pointer;
+  .logo-box {
     display: flex;
+    align-items: center;
   }
 
   .logo {
     width: @header-1st-h;
     height: @header-1st-h;
+  }
+  .head-tab {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+
+    p,
+    span {
+      margin: 0;
+      transition: all 100ms ease-in-out;
+    }
+    span {
+      display: block;
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    p {
+      transform: translateY(-10px);
+    }
+    &:hover {
+      color: @mainColor;
+    }
+    &:hover > p {
+      transform: translateY(0px);
+    }
+    &:hover > span {
+      opacity: 1;
+      transform: translateY(0px);
+    }
   }
 }
 </style>

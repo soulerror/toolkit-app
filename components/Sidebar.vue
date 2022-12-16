@@ -12,7 +12,7 @@
         {{ item.name }}
       </div>
     </div>
-    <div class="sidebar-title"><a-icon type="history" /> 最近使用</div>
+    <div class="sidebar-title"><a-icon type="clock-circle" />  最近使用</div>
     <div class="hot-list">
       <div
         class="hot-list-item"
