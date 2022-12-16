@@ -3,7 +3,7 @@
     <div @click="handleClickIcon" class="logo-box">
       <img class="logo" src="@/assets/svg/tool.svg" />
       <div class="head-tab">
-        <span>Tools</span>
+        <span>Useful Tools</span>
         <p>常用小工具</p>
       </div>
     </div>
@@ -35,6 +35,7 @@ export default Vue.extend({
   .logo-box {
     display: flex;
     align-items: center;
+    cursor: pointer;
   }
 
   .logo {
@@ -44,8 +45,6 @@ export default Vue.extend({
   .head-tab {
     display: flex;
     flex-direction: column;
-    cursor: pointer;
-
     p,
     span {
       margin: 0;

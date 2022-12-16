@@ -26,35 +26,28 @@
         </div>
       </div>
       <div class="output-box">
-        <Card title="二维码配置" class="config-card">
-          <div class="config-form">
-            <a-form :colon="false" layout="inline">
-              <a-form-item>
-                <template #label>
-                  <a-icon type="bg-colors" /> 二维码颜色
-                </template>
-                <ColorPicker
-                  popper-class="color-pick-box"
-                  v-model="codeOptions.color.dark"
-                />
-              </a-form-item>
-              <a-form-item>
-                <template #label><a-icon type="font-size" /> 下载规格</template>
-                <a-select style="width: 80px" v-model="codeOptions.width">
-                  <a-select-option
-                    v-for="(size, index) in sizeOptions"
-                    :key="index"
-                    :value="size"
-                  >
-                    {{ size }}
-                  </a-select-option>
-                </a-select>
-              </a-form-item>
-            </a-form>
-          </div>
+        <Card title="二维码配置" class="config-card" bodyClass="config-form">
+          <FormItem icon="bg-colors" label="二维码颜色">
+            <ColorPicker
+              size="small"
+              popper-class="color-pick-box"
+              v-model="codeOptions.color.dark"
+            />
+          </FormItem>
+          <FormItem label="下载规格" icon="font-size">
+            <a-select style="width: 80px" v-model="codeOptions.width">
+              <a-select-option
+                v-for="(size, index) in sizeOptions"
+                :key="index"
+                :value="size"
+              >
+                {{ size }}
+              </a-select-option>
+            </a-select>
+          </FormItem>
         </Card>
 
-        <Card title="二维码预览" class="code-box">
+        <Card title="二维码预览" class="code-box" bodyClass="canvas-card">
           <div class="canvas-box">
             <canvas id="code" v-show="visibility"></canvas>
           </div>
@@ -77,6 +70,7 @@ import { QrCodeStoreKey } from "@/configs";
 import QrCode from "qrcode";
 import Vue from "vue";
 import { ColorPicker } from "element-ui";
+import FormItem from "../components/FormItem.vue";
 var canvas: any = null;
 
 interface DataType {
@@ -109,6 +103,7 @@ const sizeOptions: Array<Number> = [
 export default Vue.extend({
   components: {
     ColorPicker,
+    FormItem,
   },
   data(): DataType {
     return {
@@ -253,10 +248,20 @@ export default Vue.extend({
     }
   }
 
-  .config-form {
+  /deep/ .config-form {
     height: 100%;
     padding: 1em;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
   }
+
+  /deep/ .canvas-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .clean-btn {
     right: 25px;
     top: 35px;
