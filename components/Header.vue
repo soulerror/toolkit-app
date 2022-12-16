@@ -4,7 +4,7 @@
       <img class="logo" src="@/assets/svg/tool.svg" />
       <div class="head-tab">
         <span>Useful Tools</span>
-        <p>常用小工具</p>
+        <p>实用小工具</p>
       </div>
     </div>
   </div>

@@ -16,7 +16,7 @@
         <a-textarea
           v-model="text"
           :maxLength="1000"
-          class="code-input"
+          class="code-input scroll-style"
           placeholder="请输入需要生成二维码的文本 最多1000个字符"
         ></a-textarea>
         <div class="bottom-btns bottom-btns-right">
@@ -224,8 +224,8 @@ export default Vue.extend({
     .code-box {
       flex: 1;
       .canvas-box {
-        width: 302px;
-        height: 302px;
+        width: 300px;
+        height: 300px;
       }
       #code {
         z-index: -1;
@@ -235,7 +235,7 @@ export default Vue.extend({
 
   .config-card {
     margin: 30px 0;
-    height: 200px;
+    height: 160px;
     border: @border;
     border-radius: 12px;
 

@@ -36,6 +36,7 @@ export default Vue.extend({
     width: calc(100% - 60px);
     min-width: 1200px;
     height: calc(100% - 100px);
+    min-height: 756px;
     margin: 0 auto;
 
     .route-box {

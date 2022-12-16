@@ -1,12 +1,8 @@
 <template>
   <ToolCard title="正则表达式校验">
     <div class="reg-input-box">
-      <div></div>
-      <a-form layout="inline">
-        <a-form-item label="正则表达式">
-          <a-input class="reg-input" v-model="regular"></a-input>
-        </a-form-item>
-      </a-form>
+      <p>正则表达式</p>
+      <a-textarea class="scroll-style"></a-textarea>
     </div>
     <div class="content-box">
       <div class="input-box">
@@ -17,7 +13,7 @@
           placehoder="请输入需要验证的文本"
         >
         </textarea>
-        <div class="bottom-btns">
+        <div class="bottom-btns bottom-btns-right">
           <Button @click="contentCheck"
             ><a-icon type="check" /> 内容验证
           </Button>
@@ -97,9 +93,19 @@ function highLightKeywords(
     justify-content: center;
     align-items: center;
     height: @header-1st-h;
+    padding:20px;
+    border-bottom: @border;
     .reg-input {
       width: 800px;
       margin: 0 auto;
+    }
+    p {
+      width: fit-content;
+      white-space: nowrap;
+      margin: 0;
+    }
+    textarea {
+      resize: none;
     }
   }
   .content-box {
@@ -107,7 +113,7 @@ function highLightKeywords(
     display: flex;
 
     textarea {
-      height: calc(100% - @bottom-box-h);
+      flex: 1;
       width: 100%;
       outline: none;
       border: none;
@@ -119,10 +125,11 @@ function highLightKeywords(
     .output-box {
       height: 100%;
       width: 50%;
-      border-top: @border;
     }
     .input-box {
       border-right: @border;
+      display: flex;
+      flex-direction: column;
     }
     .output-box {
       padding: 10px;
