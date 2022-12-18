@@ -62,11 +62,11 @@ export default Vue.extend({
       color: @mainColor;
     }
     &:hover > p {
-      transform: translateY(0px);
+      transform: none;
     }
     &:hover > span {
       opacity: 1;
-      transform: translateY(0px);
+      transform: none;
     }
   }
 }

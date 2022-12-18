@@ -129,6 +129,7 @@ export default Vue.extend({
   methods: {
     generateQrCode(text?: string) {
       text = text ? text : this.text;
+      console.log(text, "生成二维码参数");
       if (text)
         QrCode.toCanvas(
           canvas,
