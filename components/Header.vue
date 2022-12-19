@@ -2,10 +2,7 @@
   <div class="header">
     <div @click="handleClickIcon" class="logo-box">
       <img class="logo" src="@/assets/svg/tool.svg" />
-      <div class="head-tab">
-        <span>Useful Tools</span>
-        <p>实用小工具</p>
-      </div>
+      <TextTab hider="Useful Tools" @click="handleClickIcon" cover="实用小工具"></TextTab>
     </div>
   </div>
 </template>
@@ -41,33 +38,6 @@ export default Vue.extend({
   .logo {
     width: @header-1st-h;
     height: @header-1st-h;
-  }
-  .head-tab {
-    display: flex;
-    flex-direction: column;
-    p,
-    span {
-      margin: 0;
-      transition: all 100ms ease-in-out;
-    }
-    span {
-      display: block;
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    p {
-      transform: translateY(-10px);
-    }
-    &:hover {
-      color: @mainColor;
-    }
-    &:hover > p {
-      transform: none;
-    }
-    &:hover > span {
-      opacity: 1;
-      transform: none;
-    }
   }
 }
 </style>

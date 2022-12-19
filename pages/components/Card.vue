@@ -1,9 +1,4 @@
-<template>
-  <div class="card" @click="_click">
-    <slot />
-  </div>
-</template>
-<script lang="ts">
+<script lang="tsx">
 import Vue from "vue";
 export default Vue.extend({
   data() {
@@ -13,6 +8,13 @@ export default Vue.extend({
     _click() {
       this.$emit("click");
     },
+  },
+  render() {
+    return (
+      <div class="card" onClick={() => this.$emit("click")}>
+        {this.$slots.default}
+      </div>
+    );
   },
 });
 </script>
@@ -42,7 +44,7 @@ export default Vue.extend({
   border-radius: 2px;
   background: @themeColor;
   margin: 0 auto;
-  transition: width 500ms ease-in;
+  transition: width 400ms ease-in-out;
 }
 .card:hover::after {
   width: 100%;

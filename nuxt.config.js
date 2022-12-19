@@ -9,7 +9,7 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'keyword', content: "在线工具,开发人员工具,代码格式化、压缩、加密、解密,编码,解码,进制转换,二维码,时间戳,rgb,hex,cron表达式,base64,正则表达式,json格式化,照片压缩,pdf合并" },
-      { hid: 'description', name: 'description', content:"在线工具,开发人员工具,代码格式化、压缩、加密、解密,编码,解码,进制转换,二维码,时间戳,rgb,hex,cron表达式,base64,正则表达式,json格式化,照片压缩,pdf合并" },
+      { hid: 'description', name: 'description', content: "在线工具,开发人员工具,代码格式化、压缩、加密、解密,编码,解码,进制转换,二维码,时间戳,rgb,hex,cron表达式,base64,正则表达式,json格式化,照片压缩,pdf合并" },
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
@@ -52,7 +52,8 @@ export default {
       less: {
         lessOptions: { // less-loader 5.x以上才有 lessOptions , 5.x 以下直接配置
           javascriptEnabled: true,
-          modifyVars: { // 根据自己需要的主题颜色修改， antdV 的变量配置可以查看 https://github.com/vueComponent/ant-design-vue/blob/master/components/style/themes/default.less
+          // 根据自己需要的主题颜色修改， antdV 的变量配置可以查看 https://github.com/vueComponent/ant-design-vue/blob/master/components/style/themes/default.less
+          modifyVars: {
             'primary-color': '#533ef9',
           }
         },

@@ -8,7 +8,7 @@ import { message } from 'ant-design-vue';
  * @param {Boolean} immediate 是否立即执行 
  * @return null
  */
-export function debounce(func: Function, wait = 500, immediate: boolean = false) {
+export function debounce(func: Function, wait: number = 500, immediate: boolean = false) {
     let timeout: null | NodeJS.Timeout = null;
     // 清除定时器
     if (timeout !== null) clearTimeout(timeout);

@@ -5,16 +5,6 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
-
-const enum Shape {
-  //矩形
-  SQUARE = "square",
-  //圆角
-  RADIUS = "radius",
-  //圆形
-  CIRCLE = "circle",
-}
-
 export default Vue.extend({
   props: {
     shape: {
