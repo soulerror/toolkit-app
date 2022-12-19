@@ -23,7 +23,8 @@
         {{ item.name }}
       </div>
     </div>
-    <img src="@/assets/images/animation.gif" />
+    <!-- <img src="@/assets/images/animation.gif" /> -->
+    <img src="https://cdn.icuzz.com/image/animation.gif" />
   </div>
 </template>
 <script lang="ts">
