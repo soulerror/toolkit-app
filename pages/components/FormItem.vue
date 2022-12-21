@@ -30,7 +30,7 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-@import url("@/assets/css/variable.less");
+
 .form-item-component {
   display: flex;
   width: fit-content;

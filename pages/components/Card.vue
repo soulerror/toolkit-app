@@ -19,7 +19,7 @@ export default Vue.extend({
 });
 </script>
 <style lang="less" scoped>
-@import url("@/assets/css/variable.less");
+
 .card {
   height: 100px;
   width: 120px;

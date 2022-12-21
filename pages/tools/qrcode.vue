@@ -185,7 +185,7 @@ export default Vue.extend({
 });
 </script>
 <style lang="less" scoped>
-@import url("@/assets/css/variable.less");
+
 .qr-code-box {
   height: 100%;
   display: flex;

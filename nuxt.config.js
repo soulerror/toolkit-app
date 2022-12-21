@@ -23,7 +23,11 @@ export default {
     'assets/css/global.less',
     'element-ui/lib/theme-chalk/color-picker.css'
   ],
-
+  styleResources: {
+    less: [
+      './assets/css/variable.less'
+    ]
+  },
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '@/plugins/antd-ui',
@@ -45,6 +49,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/style-resources'
   ],
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

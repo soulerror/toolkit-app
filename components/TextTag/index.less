@@ -1,27 +1,34 @@
-@import url("~assets/css/variable.less");
 .head-tab {
   display: flex;
   flex-direction: column;
+  width: fit-content;
+
   p,
   span {
     margin: 0;
     transition: all 100ms ease-in-out;
   }
+
   span {
     display: block;
     opacity: 0;
     transform: translateY(10px);
   }
+
   p {
     transform: translateY(-10px);
+    width: fit-content;
   }
+
   &:hover {
     color: @mainColor;
   }
-  &:hover > p {
+
+  &:hover>p {
     transform: none;
   }
-  &:hover > span {
+
+  &:hover>span {
     opacity: 1;
     transform: none;
   }

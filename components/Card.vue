@@ -23,7 +23,7 @@ export default Vue.extend({
 });
 </script>
 <style lang="less" scoped>
-@import url("@/assets/css/variable.less");
+
 .card {
   border: @border;
   border-radius: 12px;

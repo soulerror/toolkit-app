@@ -86,7 +86,7 @@ function highLightKeywords(
 }
 </script>
 <style lang="less" scoped>
-@import url("@/assets/css/variable.less");
+
 .tool-box {
   .reg-input-box {
     display: flex;

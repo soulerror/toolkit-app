@@ -2,7 +2,7 @@
   <div class="header">
     <div @click="handleClickIcon" class="logo-box">
       <img class="logo" src="@/assets/svg/tool.svg" />
-      <TextTab hider="Useful Tools" @click="handleClickIcon" cover="实用小工具"></TextTab>
+      <TextTag hider="Tools.icuzz.com" @click="handleClickIcon" cover="实用小工具"></TextTag>
     </div>
   </div>
 </template>

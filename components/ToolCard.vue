@@ -1,7 +1,9 @@
 <template>
   <div class="tool-body">
     <div class="tool-header">
-      <section v-if="!$slots.title" class="tool-title">{{ title }}</section>
+      <section v-if="!$slots.title" class="tool-title">
+        <TextTag :cover="title" hider="Useful Tool"></TextTag>
+      </section>
       <slot name="title" />
     </div>
     <div class="tool-box">
@@ -65,7 +67,7 @@ export default Vue.extend({
       this.$emit("drawerClose");
     },
     _drawerItemClick(item: any, index: number) {
-      console.log(index,"index");
+      console.log(index, "index");
       this.$emit("clickDrawerItem", item, index);
     },
     _clean() {
@@ -84,14 +86,26 @@ export default Vue.extend({
 });
 </script>
 <style lang="less" scoped>
-@import url("@/assets/css/variable.less");
 @import url("@/assets/css/common.less");
 @width: 240px;
 .tool-body {
   position: relative;
   overflow: hidden;
 }
+
+.tool-header {
+  height: @header-2nd-h;
+  width: 100%;
+  padding: 0 12px;
+  border-bottom: @border;
+  display: flex;
+  align-items: center;
+  cursor: default;
+}
+
 .tool-box {
+  width: 100%;
+  height: calc(100% - @header-2nd-h);
   position: relative;
 }
 .tool-sidebar {
