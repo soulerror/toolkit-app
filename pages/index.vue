@@ -4,16 +4,17 @@
     <div class="card-box">
       <div
         class="card"
-        v-for="(item, index) in routeArr"
-        :key="index"
+        v-for="item in routeArr"
+        :key="item.path"
         @click="skipTo(item.path)"
       >
         <div class="card-title">
           <span>{{ item.abbr }}</span>
           <p>{{ item.name }}</p>
         </div>
+        <img src="@/assets/svg/json.svg" alt="" srcset="">
       </div>
-      <i v-for="i in 10" :key="i" />
+      <i v-for="i in 100" :key="i" />
     </div>
   </div>
 </template>
@@ -43,6 +44,7 @@ export default Vue.extend({
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  padding: 10px;
 }
 // 卡片及占位符间距
 @card-margin:20px 10px;
@@ -62,6 +64,7 @@ export default Vue.extend({
   align-items: center;
   position: relative;
   box-shadow: @shadowColor;
+  transition: all 200ms ease-in-out;
 
   img {
     height: 60px;
@@ -71,6 +74,7 @@ export default Vue.extend({
 
   &:hover {
     color: @mainColor;
+    transform: translateY(-5px)
   }
 
   &:hover .card-title > p {
@@ -91,7 +95,7 @@ i {
   width: 0;
   height: 4px;
   border-radius: 0 0 12px 12px;
-  background: @themeColor;
+  background: @mainColor;
   margin: 0 auto;
   transition: width 400ms ease-in-out;
   position: absolute;
@@ -113,7 +117,7 @@ i {
   p,
   span {
     margin: 0;
-    transition: all 100ms ease-in-out;
+    transition: all 200ms ease-in-out;
   }
 
   span {
