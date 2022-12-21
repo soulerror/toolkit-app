@@ -2,49 +2,58 @@ export const routeArr: Array<Page> = [
     {
         path: "/tools/json-pretty",
         name: "JSON格式化工具",
-        icon: "tools"
+        icon: "tools",
+        abbr: "Json Formatter"
     },
     {
         path: "/tools/url-codec",
         name: "URL编解码",
-        icon: "tools"
+        icon: "tools",
+        abbr: "Url Codec"
     },
     {
         path: "/tools/base64",
         name: "Base64编解码",
-        icon: "tools"
+        icon: "tools",
+        abbr: "Base64 Codec"
     },
     {
         path: "/tools/regular",
         name: "正则表达式验证",
-        icon: "tools"
+        icon: "tools",
+        abbr: "Regular Expression"
     },
     {
         path: "/tools/rgb-hex",
         name: "RGB HEX互转",
-        icon: "tools"
+        icon: "tools",
+        abbr: "RGB HEX Transfer"
     },
     {
         path: "/tools/cron-util",
         name: "Cron表达式工具",
-        icon: 'tools'
+        icon: 'tools',
+        abbr: "Cron Expression"
     },
-    {
-        path: "/tools/time-formater",
-        name: "时间戳转换",
-        icon: 'tools'
-    },
+    // {
+    //     path: "/tools/time-formater",
+    //     name: "时间戳转换",
+    //     icon: 'tools'
+    // },
     {
         path: "/tools/qrcode",
         name: "二维码生成",
-        icon: 'tools'
+        icon: 'tools',
+        abbr: "Qrcode Generator"
     }
 ]
 //路由Page结构定义
 export interface Page {
     path: string,
     name: string,
-    icon: string
+    icon: string,
+    abbr: string
+
 }
 
 //路由map
