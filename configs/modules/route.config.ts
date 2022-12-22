@@ -21,6 +21,13 @@ export const routeArr: Array<Page> = [
         desc: "在线Base64编码、Base64解码工具"
     },
     {
+        path: "/tools/qrcode",
+        name: "二维码生成",
+        icon: 'qrcode',
+        abbr: "Qrcode Generator",
+        desc: "在线二维码生成、下载工具"
+    },
+    {
         path: "/tools/regular",
         name: "正则表达式验证",
         icon: "regular",
@@ -40,14 +47,6 @@ export const routeArr: Array<Page> = [
         icon: 'code',
         abbr: "Cron Expression",
         desc: "在线Cron表达式执行时间计算工具"
-    },
-
-    {
-        path: "/tools/qrcode",
-        name: "二维码生成",
-        icon: 'qrcode',
-        abbr: "Qrcode Generator",
-        desc: "在线二维码生成、下载工具"
     },
     {
         path: "/tools/time-formater",
