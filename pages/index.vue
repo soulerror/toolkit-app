@@ -1,20 +1,25 @@
 <template>
   <div>
     <!-- 工具集 -->
-    <div class="card-box">
+    <div class="card-box scroll-style">
       <div
         class="card"
-        v-for="item in routeArr"
+        v-for="item in route"
         :key="item.path"
         @click="skipTo(item.path)"
       >
-        <div class="card-title">
-          <span>{{ item.abbr }}</span>
-          <p>{{ item.name }}</p>
+        <div class="card-header">
+          <img
+            :src="require(`@/assets/svg/${item.icon}.svg`)"
+            class="card-icon"
+          />
+          <div class="card-title">
+            <span>{{ item.abbr }}</span>
+            <p>{{ item.name }}</p>
+          </div>
         </div>
-        <img src="@/assets/svg/json.svg" alt="" srcset="">
+        <div class="card-content"></div>
       </div>
-      <i v-for="i in 100" :key="i" />
     </div>
   </div>
 </template>
@@ -24,12 +29,14 @@ import Vue from "vue";
 
 import { routeArr } from "@/configs";
 
+let route = routeArr.concat(routeArr).concat(routeArr).concat(routeArr);
+
 export default Vue.extend({
   name: "IndexPage",
   layout: "default",
   data() {
     return {
-      routeArr,
+      route,
     };
   },
   methods: {
@@ -41,40 +48,30 @@ export default Vue.extend({
 </script>
 <style lang="less" scoped>
 .card-box {
-  display: flex;
-  flex-wrap: wrap;
+  height: 100%;
+  display: grid;
+  // flex-wrap: wrap;
   justify-content: space-around;
+  grid-template-columns: repeat(auto-fill, 200px);
   padding: 10px;
+  grid-gap: 10px;
 }
-// 卡片及占位符间距
-@card-margin:20px 10px;
 
 .card {
   height: 200px;
   width: 200px;
-  background-color: #fff;
   border: @border;
   border-radius: 12px;
-  margin: @card-margin;
+  margin: 10px 0;
   cursor: pointer;
-  text-align: center;
   display: flex;
   flex-direction: column;
-  // justify-content: center;
-  align-items: center;
-  position: relative;
   box-shadow: @shadowColor;
   transition: all 200ms ease-in-out;
 
-  img {
-    height: 60px;
-    width: 60px;
-    border-radius: 12px;
-  }
-
   &:hover {
     color: @mainColor;
-    transform: translateY(-5px)
+    transform: translateY(-5px);
   }
 
   &:hover .card-title > p {
@@ -85,50 +82,64 @@ export default Vue.extend({
     opacity: 1;
     transform: none;
   }
-}
-i {
-  width: 200px;
-  margin: @card-margin;
-}
-.card::after {
-  content: "";
-  width: 0;
-  height: 4px;
-  border-radius: 0 0 12px 12px;
-  background: @mainColor;
-  margin: 0 auto;
-  transition: width 400ms ease-in-out;
-  position: absolute;
-  bottom: 0;
-}
-.card:hover::after {
-  width: 100%;
-}
-.card-title {
-  display: flex;
-  flex-direction: column;
-  width: fit-content;
-  justify-content: center;
-  align-items: center;
-  border-bottom: @border;
-  width: 100%;
-  font-weight: bold;
 
-  p,
-  span {
-    margin: 0;
-    transition: all 200ms ease-in-out;
-  }
-
-  span {
+  &::after {
+    content: "";
     display: block;
-    opacity: 0;
-    transform: translateY(10px);
+    width: 0;
+    height: 4px;
+    border-radius: 0 0 12px 12px;
+    background: @mainColor;
+    margin: 0 auto;
+    transition: width 400ms ease-in-out;
   }
 
-  p {
-    transform: translateY(-10px);
+  &:hover::after {
+    width: 100%;
+  }
+
+  &-header {
+    display: flex;
+    height: @header-3th-h;
+    border-bottom: @border;
+    align-items: center;
+
+    img {
+      height: 36px;
+      width: 36px;
+      margin: 0 5px;
+    }
+  }
+
+  &-title {
     width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+
+    p,
+    span {
+      margin: 0;
+      transition: all 200ms ease-in-out;
+    }
+
+    span {
+      display: block;
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    p {
+      transform: translateY(-10px);
+      width: fit-content;
+    }
+  }
+
+  &-content {
+    flex: 1;
+    width: 100%;
   }
 }
 </style>

@@ -1,8 +1,8 @@
 <template>
-  <div class="card">
-    <div v-if="!$slots.title" class="card-header">{{ title }}</div>
+  <div class="card-component">
+    <div v-if="!$slots.title" class="card-component-header">{{ title }}</div>
     <slot name="title"></slot>
-    <div :class="`${bodyClass} card-body`" v-if="$slots.default">
+    <div :class="`${bodyClass} card-component-body`" v-if="$slots.default">
       <slot />
     </div>
   </div>
@@ -24,7 +24,7 @@ export default Vue.extend({
 </script>
 <style lang="less" scoped>
 
-.card {
+.card-component {
   border: @border;
   border-radius: 12px;
   display: flex;

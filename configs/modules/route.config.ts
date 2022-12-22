@@ -2,13 +2,13 @@ export const routeArr: Array<Page> = [
     {
         path: "/tools/json-pretty",
         name: "JSON格式化工具",
-        icon: "tools",
+        icon: "json",
         abbr: "Json Formatter"
     },
     {
         path: "/tools/url-codec",
         name: "URL编解码",
-        icon: "tools",
+        icon: "url",
         abbr: "Url Codec"
     },
     {
@@ -20,13 +20,13 @@ export const routeArr: Array<Page> = [
     {
         path: "/tools/regular",
         name: "正则表达式验证",
-        icon: "tools",
+        icon: "regular",
         abbr: "Regular Expression"
     },
     {
         path: "/tools/rgb-hex",
         name: "RGB HEX互转",
-        icon: "tools",
+        icon: "rgb",
         abbr: "RGB HEX Transfer"
     },
     {
