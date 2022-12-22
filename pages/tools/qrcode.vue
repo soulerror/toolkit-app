@@ -70,7 +70,6 @@ import { QrCodeStoreKey } from "@/configs";
 import QrCode from "qrcode";
 import Vue from "vue";
 import { ColorPicker } from "element-ui";
-import FormItem from "../components/FormItem.vue";
 var canvas: any = null;
 
 interface DataType {
@@ -103,7 +102,6 @@ const sizeOptions: Array<Number> = [
 export default Vue.extend({
   components: {
     ColorPicker,
-    FormItem,
   },
   data(): DataType {
     return {
@@ -185,7 +183,6 @@ export default Vue.extend({
 });
 </script>
 <style lang="less" scoped>
-
 .qr-code-box {
   height: 100%;
   display: flex;

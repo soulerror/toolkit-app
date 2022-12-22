@@ -2,7 +2,11 @@
   <div class="header">
     <div @click="handleClickIcon" class="logo-box">
       <img class="logo" src="@/assets/svg/tool.svg" />
-      <TextTag hider="Tools.icuzz.com" @click="handleClickIcon" cover="实用小工具"></TextTag>
+      <TextTag
+        hider="Tools.icuzz.com"
+        @click="handleClickIcon"
+        cover="实用小工具"
+      ></TextTag>
     </div>
   </div>
 </template>
@@ -33,6 +37,12 @@ export default Vue.extend({
     display: flex;
     align-items: center;
     cursor: pointer;
+
+    img {
+      height: 40px;
+      width: 40px;
+      margin: 0 10px;
+    }
   }
 
   .logo {

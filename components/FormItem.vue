@@ -36,7 +36,7 @@ export default {
   width: fit-content;
   align-items: center;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
 
   i {
     color: @mainColor;

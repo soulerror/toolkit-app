@@ -4,21 +4,20 @@
     <div class="card-box scroll-style">
       <div
         class="card"
-        v-for="item in route"
+        v-for="item in routeArr"
         :key="item.path"
         @click="skipTo(item.path)"
       >
         <div class="card-header">
-          <img
-            :src="require(`@/assets/svg/${item.icon}.svg`)"
-            class="card-icon"
-          />
+          <img :src="require(`@/assets/svg/${item.icon}.svg`)" />
           <div class="card-title">
             <span>{{ item.abbr }}</span>
             <p>{{ item.name }}</p>
           </div>
         </div>
-        <div class="card-content"></div>
+        <div class="card-content">
+          <p>{{item.desc}}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -29,14 +28,12 @@ import Vue from "vue";
 
 import { routeArr } from "@/configs";
 
-let route = routeArr.concat(routeArr).concat(routeArr).concat(routeArr);
-
 export default Vue.extend({
   name: "IndexPage",
   layout: "default",
   data() {
     return {
-      route,
+      routeArr,
     };
   },
   methods: {
@@ -47,19 +44,25 @@ export default Vue.extend({
 });
 </script>
 <style lang="less" scoped>
+// 卡片高度
+@card-h: 150px;
+// 卡片宽度
+@card-w: 200px;
+
 .card-box {
   height: 100%;
   display: grid;
-  // flex-wrap: wrap;
   justify-content: space-around;
-  grid-template-columns: repeat(auto-fill, 200px);
+  grid-template-columns: repeat(auto-fill, @card-w);
+  grid-template-rows: @card-h @card-w;
   padding: 10px;
-  grid-gap: 10px;
+  grid-row-gap: 30px;
+  grid-column-gap: 10px;
 }
 
 .card {
-  height: 200px;
-  width: 200px;
+  height: @card-h;
+  width: @card-w;
   border: @border;
   border-radius: 12px;
   margin: 10px 0;
@@ -103,17 +106,18 @@ export default Vue.extend({
     height: @header-3th-h;
     border-bottom: @border;
     align-items: center;
+    padding: 0 5px;
 
     img {
       height: 36px;
       width: 36px;
-      margin: 0 5px;
     }
   }
 
   &-title {
-    width: fit-content;
+    // width: fit-content;
     display: flex;
+    flex: auto;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -140,6 +144,8 @@ export default Vue.extend({
   &-content {
     flex: 1;
     width: 100%;
+    text-indent: 1.5em;
+    padding: 5px;
   }
 }
 </style>
