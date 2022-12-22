@@ -39,7 +39,7 @@ export const routeArr: Array<Page> = [
         name: "RGB HEX互转",
         icon: "rgb",
         abbr: "RGB HEX Transfer",
-        desc: "在线RGB转Hex、HEx转RGB工具"
+        desc: "在线RGB转HEX、HEX转RGB工具"
     },
     {
         path: "/tools/cron-util",
@@ -52,8 +52,8 @@ export const routeArr: Array<Page> = [
         path: "/tools/time-formater",
         name: "时间戳转换",
         icon: 'clock',
-        abbr: "Qrcode Generator",
-        desc: ""
+        abbr: "Time Converter",
+        desc: "在线时间戳转换、时间格式转换工具"
     },
 ]
 //路由Page结构定义
