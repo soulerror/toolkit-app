@@ -2,8 +2,9 @@
   <ToolCard title="时间戳转换">
     <Card title="当前时间戳" class="time-card" bodyClass="time-card-body">
       <TimeUnit v-for="item in 10" :key="item">{{
-        curentDate(item - 1)
+        curentTimestampe(item - 1)
       }}</TimeUnit>
+      <Button><a-icon type="copy" /> 点击复制</Button>
     </Card>
   </ToolCard>
 </template>
@@ -17,23 +18,31 @@ const TimeUnit = Vue.extend({
   },
 });
 
+interface DataType {
+  timestamp: number | null;
+  timer: NodeJS.Timer | null;
+}
+
 export default Vue.extend({
   components: { TimeUnit },
-  data() {
+  data(): DataType {
     return {
-      time: 1671704255,
+      timestamp: new Date().valueOf(),
+      timer: null,
     };
   },
   mounted() {
-    setInterval(() => {
-      this.time = new Date().valueOf();
+    this.timer = setInterval(() => {
+      if (this.timestamp) this.timestamp += 1000;
     }, 1000);
   },
+  destroyed() {
+    this.timer && clearInterval(this.timer);
+  },
   computed: {
-    curentDate() {
-      return (index: number) => {
-        return this.time.toString().split("")[index];
-      };
+    curentTimestampe() {
+      return (index: number) =>
+        this.timestamp ? this.timestamp.toString().split("")[index] : null;
     },
   },
 });
@@ -45,9 +54,10 @@ export default Vue.extend({
 
   /deep/ &-body {
     display: flex;
+    padding: 20px;
   }
 }
-@unitLength: 30px;
+@unitLength: 36px;
 
 .time-unit-box {
   height: @unitLength;
@@ -56,5 +66,6 @@ export default Vue.extend({
   line-height: @unitLength;
   text-align: center;
   font-weight: bolder;
+  font-size: 24px;
 }
 </style>
