@@ -16,7 +16,12 @@
           </div>
         </div>
         <div class="card-content">
-          <p>{{item.desc}}</p>
+          <div class="card-content-desc">
+            <p>{{ item.desc }}</p>
+          </div>
+          <span class="card-content-tag">{{
+            item.status == ToolStatus.DEVELOPING ? "开发中" : ""
+          }}</span>
         </div>
       </div>
     </div>
@@ -26,7 +31,7 @@
 <script lang="ts">
 import Vue from "vue";
 
-import { routeArr } from "@/configs";
+import { routeArr, ToolStatus } from "@/configs";
 
 export default Vue.extend({
   name: "IndexPage",
@@ -34,6 +39,7 @@ export default Vue.extend({
   data() {
     return {
       routeArr,
+      ToolStatus,
     };
   },
   methods: {
@@ -71,6 +77,7 @@ export default Vue.extend({
   flex-direction: column;
   box-shadow: @shadowColor;
   transition: all 200ms ease-in-out;
+  box-sizing:content-box;
 
   &:hover {
     color: @mainColor;
@@ -104,6 +111,7 @@ export default Vue.extend({
   &-header {
     display: flex;
     height: @header-3th-h;
+    box-sizing:border-box;
     border-bottom: @border;
     align-items: center;
     padding: 0 5px;
@@ -142,10 +150,24 @@ export default Vue.extend({
   }
 
   &-content {
-    flex: 1;
+    height: @card-h - @header-3th-h;
     width: 100%;
     text-indent: 1.5em;
     padding: 5px;
+    display: flex;
+    flex-direction: column;
+
+    &-desc {
+      flex: 1;
+    }
+
+    &-tag {
+      height: 24px;
+      display: block;
+      margin: 0 auto;
+      text-align: right;
+      text-indent: 2em;
+    }
   }
 }
 </style>

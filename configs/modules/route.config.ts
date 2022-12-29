@@ -1,59 +1,75 @@
+/**
+ * 工具状态
+ */
+export enum ToolStatus {
+    DEVELOPING,
+    COMPLETED
+}
+
 export const routeArr: Array<Page> = [
     {
         path: "/tools/json-pretty",
         name: "JSON格式化工具",
         icon: "json",
         abbr: "Json Formatter",
-        desc: "在线Json字符串格式美化工具"
+        desc: "在线Json字符串格式美化工具",
+        status: ToolStatus.COMPLETED
     },
     {
         path: "/tools/url-codec",
         name: "URL编解码",
         icon: "url",
         abbr: "Url Codec",
-        desc: "在线Url编码、Url解码工具"
+        desc: "在线Url编码、Url解码工具",
+        status: ToolStatus.COMPLETED
     },
     {
         path: "/tools/base64",
         name: "Base64编解码",
         icon: "code",
         abbr: "Base64 Codec",
-        desc: "在线Base64编码、Base64解码工具"
+        desc: "在线Base64编码、Base64解码工具",
+        status: ToolStatus.COMPLETED
     },
     {
         path: "/tools/qrcode",
         name: "二维码生成",
         icon: 'qrcode',
         abbr: "Qrcode Generator",
-        desc: "在线二维码生成、下载工具"
+        desc: "在线二维码生成、下载工具",
+        status: ToolStatus.COMPLETED
     },
     {
         path: "/tools/regular",
         name: "正则表达式验证",
         icon: "regular",
         abbr: "Regular Expression",
-        desc: "在线正则表达式验证、正则表达式替换工具"
+        desc: "在线正则表达式验证、正则表达式替换工具",
+        status: ToolStatus.DEVELOPING
     },
     {
         path: "/tools/rgb-hex",
         name: "RGB HEX互转",
         icon: "rgb",
         abbr: "RGB HEX Transfer",
-        desc: "在线RGB转HEX、HEX转RGB工具"
+        desc: "在线RGB转HEX、HEX转RGB工具",
+        status: ToolStatus.DEVELOPING
     },
     {
         path: "/tools/cron-util",
         name: "Cron表达式工具",
         icon: 'code',
         abbr: "Cron Expression",
-        desc: "在线Cron表达式执行时间计算工具"
+        desc: "在线Cron表达式执行时间计算工具",
+        status: ToolStatus.DEVELOPING
     },
     {
         path: "/tools/time-formater",
         name: "时间戳转换",
         icon: 'clock',
         abbr: "Time Converter",
-        desc: "在线时间戳转换、时间格式转换工具"
+        desc: "在线时间戳转换、时间格式转换工具",
+        status: ToolStatus.DEVELOPING
     },
 ]
 //路由Page结构定义
@@ -62,8 +78,11 @@ export interface Page {
     name: string,
     icon: string,
     abbr: string
-    desc: string
+    desc: string,
+    status: ToolStatus
 }
+
+
 
 //路由map
 export const routeMap: Map<string, Page> = arrayToMap(routeArr);
