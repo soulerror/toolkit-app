@@ -20,7 +20,7 @@
             <p>{{ item.desc }}</p>
           </div>
           <span class="card-content-tag">{{
-            item.status == ToolStatus.DEVELOPING ? "开发中" : ""
+            item.status == ToolStatus.DEVELOPING ? "开发中 . . ." : ""
           }}</span>
         </div>
       </div>
@@ -164,7 +164,8 @@ export default Vue.extend({
     &-tag {
       height: 24px;
       display: block;
-      margin: 0 auto;
+      margin-left:auto;
+      float: right;
       text-align: right;
       text-indent: 2em;
     }
