@@ -4,7 +4,6 @@
       <section v-if="!$slots.title" class="tool-title">
         <TextTag :cover="title" hider="Useful Tool"></TextTag>
       </section>
-      <slot name="title" />
     </div>
     <div class="tool-box">
       <slot />

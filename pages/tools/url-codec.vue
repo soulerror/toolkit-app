@@ -8,6 +8,9 @@
     @clickDrawerItem="setUrl"
     @clean="confirmDel"
   >
+  <template #title>
+    
+  </template>
     <div class="url-box">
       <div class="input-box">
         <div class="clean-btn" v-show="url" @click="setUrl()">

@@ -33,15 +33,16 @@ export default Vue.extend({
 }
 .shape-square {
   border-radius: 0;
-}
-.shape-circle {
-  border-radius: @button-h / 2;
-}
-.shape-radius {
-  border-radius: 12px;
-}
-.cp-button:hover {
-  background: @buttonColor;
-  color: #fff;
+
+  .shape-circle {
+    border-radius: @button-h / 2;
+  }
+  .shape-radius {
+    border-radius: 12px;
+  }
+  .cp-button:hover {
+    background: @buttonColor;
+    color: #fff;
+  }
 }
 </style>

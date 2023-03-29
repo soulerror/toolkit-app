@@ -1,11 +1,11 @@
 <template>
   <div class="header">
     <div @click="handleClickIcon" class="logo-box">
-      <img class="logo" src="@/assets/svg/tool.svg" />
+      <img class="logo" src="@/assets/svg/home.svg" />
       <TextTag
         hider="Tools.icuzz.com"
         @click="handleClickIcon"
-        cover="实用小工具"
+        cover="奇异小工具"
       ></TextTag>
     </div>
   </div>
@@ -38,16 +38,11 @@ export default Vue.extend({
     align-items: center;
     cursor: pointer;
 
-    img {
-      height: 40px;
+    .logo {
       width: 40px;
+      height: 40px;
       margin: 0 10px;
     }
-  }
-
-  .logo {
-    width: @header-1st-h;
-    height: @header-1st-h;
   }
 }
 </style>
