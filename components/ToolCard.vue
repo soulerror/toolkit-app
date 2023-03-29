@@ -2,7 +2,7 @@
   <div class="tool-body">
     <div class="tool-header">
       <section v-if="!$slots.title" class="tool-title">
-        <TextTag :cover="title" hider="Useful Tool"></TextTag>
+        <TextTag :cover="title" hider="Tuch's Toolkit"></TextTag>
       </section>
     </div>
     <div class="tool-box">

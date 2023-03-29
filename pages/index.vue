@@ -77,7 +77,7 @@ export default Vue.extend({
   flex-direction: column;
   box-shadow: @shadowColor;
   transition: all 200ms ease-in-out;
-  box-sizing:content-box;
+  box-sizing: content-box;
 
   &:hover {
     color: @mainColor;
@@ -111,7 +111,7 @@ export default Vue.extend({
   &-header {
     display: flex;
     height: @header-3th-h;
-    box-sizing:border-box;
+    box-sizing: border-box;
     border-bottom: @border;
     align-items: center;
     padding: 0 5px;
@@ -164,7 +164,7 @@ export default Vue.extend({
     &-tag {
       height: 24px;
       display: block;
-      margin-left:auto;
+      margin-left: auto;
       float: right;
       text-align: right;
       text-indent: 2em;

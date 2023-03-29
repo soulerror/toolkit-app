@@ -3,7 +3,8 @@
     <div @click="handleClickIcon" class="logo-box">
       <img class="logo" src="@/assets/svg/home.svg" />
       <TextTag
-        hider="Tools.icuzz.com"
+        hider="Tuch's Toolkit"
+        class="title"
         @click="handleClickIcon"
         cover="塔奇の工具箱"
       ></TextTag>
@@ -37,11 +38,24 @@ export default Vue.extend({
     display: flex;
     align-items: center;
     cursor: pointer;
+    position: relative;
 
     .logo {
       width: 40px;
       height: 40px;
-      margin: 0 10px;
+      left: 10px;
+      transition: 200ms ease-in-out;
+      position: absolute;
+    }
+    .logo:hover {
+      width: 48px;
+      height: 48px;
+      left: 6px;
+    }
+    .title {
+      margin-left: 60px;
+      // font-weight: bold;
+      // font-size: 1.2em;
     }
   }
 }

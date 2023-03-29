@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: '在线小工具',
+    title: "塔奇の工具箱 - Tuch's Toolkit",
     htmlAttrs: {
       lang: 'en'
     },
