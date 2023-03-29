@@ -5,7 +5,7 @@
       <TextTag
         hider="Tools.icuzz.com"
         @click="handleClickIcon"
-        cover="奇异小工具"
+        cover="塔奇の工具箱"
       ></TextTag>
     </div>
   </div>
