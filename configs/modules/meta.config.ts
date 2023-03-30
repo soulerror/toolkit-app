@@ -9,9 +9,10 @@ interface MetaContent {
     content: string
 }
 
+const COMMON_TITLE = " - 塔奇の工具箱"
 
 export const JsonMeta: Meta = {
-    title: "在线JSON格式化工具",
+    title: "JSON格式化" + COMMON_TITLE,
     meta: [
         {
             name: "keywords",
@@ -26,7 +27,7 @@ export const JsonMeta: Meta = {
 }
 
 export const UrlCodecMeta: Meta = {
-    title: "在线URL编码解码工具",
+    title: "URL编码解码" + COMMON_TITLE,
     meta: [
         {
             name: "keywords",
@@ -41,7 +42,7 @@ export const UrlCodecMeta: Meta = {
 }
 
 export const RegularMeta: Meta = {
-    title: "在线正则表达式匹配校验工具",
+    title: "正则表达式校验" + COMMON_TITLE,
     meta: [
         {
             name: "keywords",

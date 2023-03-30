@@ -38,24 +38,10 @@ export default Vue.extend({
     display: flex;
     align-items: center;
     cursor: pointer;
-    position: relative;
-
     .logo {
       width: 40px;
       height: 40px;
-      left: 10px;
-      transition: 200ms ease-in-out;
-      position: absolute;
-    }
-    .logo:hover {
-      width: 48px;
-      height: 48px;
-      left: 6px;
-    }
-    .title {
-      margin-left: 60px;
-      // font-weight: bold;
-      // font-size: 1.2em;
+      margin: 0 10px;
     }
   }
 }
