@@ -16,6 +16,14 @@ export const routeArr: Array<Page> = [
         status: ToolStatus.COMPLETED
     },
     {
+        path: "/tools/mybatis-params",
+        name: "Mybatis参数替换",
+        icon: "sql",
+        abbr: "Mybatis Params",
+        desc: "Mybatis参数替换工具",
+        status: ToolStatus.COMPLETED
+    },
+    {
         path: "/tools/url-codec",
         name: "URL编解码",
         icon: "url",
