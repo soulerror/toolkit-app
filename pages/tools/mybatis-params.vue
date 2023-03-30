@@ -1,6 +1,8 @@
 <template>
   <div>
-    <ToolCard title="Mybatis参数替换工具"></ToolCard>
+    <ToolCard title="Mybatis参数替换工具">
+      <div></div>
+    </ToolCard>
   </div>
 </template>
 <script lang="ts">
