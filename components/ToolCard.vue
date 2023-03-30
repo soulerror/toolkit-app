@@ -2,7 +2,7 @@
   <div class="tool-body">
     <div class="tool-header">
       <section v-if="!$slots.title" class="tool-title">
-        <TextTag :cover="title" hider="Tuch's Toolkit"></TextTag>
+        <TextTag :cover="title" :hider="SITE_NAME_EN"></TextTag>
       </section>
     </div>
     <div class="tool-box">
@@ -42,6 +42,7 @@
 </template>
 <script lang="tsx">
 import Vue from "vue";
+import { SITE_NAME_EN } from "~/configs/modules/site.config";
 export default Vue.extend({
   props: {
     drawerVisible: {
@@ -60,6 +61,11 @@ export default Vue.extend({
       type: Boolean,
       default: false,
     },
+  },
+  data() {
+    return {
+      SITE_NAME_EN,
+    };
   },
   methods: {
     _drawerClose() {

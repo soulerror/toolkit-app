@@ -1,3 +1,4 @@
+import { SITE_NAME } from "./site.config"
 interface Meta {
     title: string,
     meta: Array<MetaContent>
@@ -9,7 +10,7 @@ interface MetaContent {
     content: string
 }
 
-const COMMON_TITLE = " - 塔奇の工具箱"
+const COMMON_TITLE = " - " + SITE_NAME;
 
 export const JsonMeta: Meta = {
     title: "JSON格式化" + COMMON_TITLE,
