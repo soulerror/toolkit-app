@@ -1,7 +1,8 @@
+import { SITE_NAME, SITE_NAME_EN } from "./configs/modules/site.config"
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "塔奇の工具箱 - Tuch's Toolkit",
+    title: SITE_NAME + " - " + SITE_NAME_EN,
     htmlAttrs: {
       lang: 'en'
     },

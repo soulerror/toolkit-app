@@ -59,7 +59,7 @@ export default Vue.extend({
     },
     confirmable: {
       type: Boolean,
-      default: false,
+      default: true,
     },
   },
   data() {
@@ -94,6 +94,7 @@ export default Vue.extend({
 @import url("@/assets/css/common.less");
 @width: 240px;
 .tool-body {
+  height: 100%;
   position: relative;
   overflow: hidden;
 }

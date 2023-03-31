@@ -7,7 +7,7 @@
     @drawerClose="onClose"
     :drawerData="parseHistory"
     @clickDrawerItem="setJsonStrText"
-    @clean="confirmDel"
+    @confirmClean="confirmDel"
   >
     <div class="json-box">
       <div class="input-box">
@@ -131,14 +131,8 @@ export default Vue.extend({
      * 确认删除记录
      */
     confirmDel() {
-      this.$confirm({
-        title: "确认删除？",
-        content: "删除后不可恢复，确认删除？",
-        onOk: () => {
-          this.$storeLocal(JsonStoreKey, []);
-          this.showHistory();
-        },
-      });
+      this.$storeLocal(JsonStoreKey, []);
+      this.showHistory();
     },
   },
 });

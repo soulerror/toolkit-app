@@ -16,11 +16,11 @@ export const routeArr: Array<Page> = [
         status: ToolStatus.COMPLETED
     },
     {
-        path: "/tools/mybatis-params",
-        name: "Mybatis参数替换",
+        path: "/tools/sql-fill",
+        name: "SQL参数填充",
         icon: "sql",
-        abbr: "Mybatis Params",
-        desc: "Mybatis参数替换工具",
+        abbr: "SQL Params Fill",
+        desc: "Mybatis/IBatis参数填充工具",
         status: ToolStatus.COMPLETED
     },
     {

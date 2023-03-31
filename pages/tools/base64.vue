@@ -6,7 +6,7 @@
     @drawerClose="onClose"
     :drawerData="history"
     @clickDrawerItem="setContent"
-    @clean="confirmDel"
+    @confirmClean="confirmDel"
   >
     <div class="url-box">
       <div class="input-box">
@@ -127,20 +127,13 @@ export default Vue.extend({
      * 确认删除记录
      */
     confirmDel() {
-      this.$confirm({
-        title: "确认删除？",
-        content: "删除后不可恢复，确认删除？",
-        onOk: () => {
-          this.$storeLocal(Base64StoreKey, []);
-          this.showHistory();
-        },
-      });
+      this.$storeLocal(Base64StoreKey, []);
+      this.showHistory();
     },
   },
 });
 </script>
 <style lang="less" scoped>
-
 .url-box {
   display: flex;
   height: 100%;
