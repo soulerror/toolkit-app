@@ -27,7 +27,7 @@ export const routeArr: Array<Page> = [
         path: "/tools/url-codec",
         name: "URL编解码",
         icon: "url",
-        abbr: "Url Codec",
+        abbr: "URL Codec",
         desc: "在线Url编码、Url解码工具",
         status: ToolStatus.COMPLETED
     },
@@ -66,7 +66,7 @@ export const routeArr: Array<Page> = [
     {
         path: "/tools/cron-util",
         name: "Cron表达式工具",
-        icon: 'code',
+        icon: 'cron',
         abbr: "Cron Expression",
         desc: "在线Cron表达式执行时间计算工具",
         status: ToolStatus.DEVELOPING

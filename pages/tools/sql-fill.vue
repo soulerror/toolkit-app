@@ -151,10 +151,11 @@ export default Vue.extend({
   height: 50%;
 
   & > pre {
-    height: 100%;
+    height: calc(100% - 8px);
     overflow-y: auto;
     padding: 0 20px;
     counter-reset: line;
+
   }
 }
 
