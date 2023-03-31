@@ -12,8 +12,8 @@
         {{ item.name }}
       </div>
     </div>
-    <div class="sidebar-title"><a-icon type="clock-circle" />  最近使用</div>
-    <div class="hot-list">
+    <div class="sidebar-title"><a-icon type="clock-circle" /> 最近使用</div>
+    <div class="hot-list recent-list">
       <div
         class="hot-list-item"
         v-for="(item, index) in hisArr"
@@ -54,8 +54,8 @@ export default Vue.extend({
   methods: {
     loadHisPath() {
       let hisArr: Array<Page> = this.$getArrayStore(PathHisKey);
-      if (hisArr.length > 4) {
-        hisArr.splice(4);
+      if (hisArr.length > 10) {
+        hisArr.splice(10);
       }
       this.hisArr = hisArr;
     },
@@ -68,6 +68,7 @@ export default Vue.extend({
 <style lang="less" scoped>
 @import url("~assets/css/variable.less");
 .sidebar {
+  height: 100%;
   width: 240px;
   min-height: 200px;
   // height: fit-content;
@@ -110,6 +111,10 @@ export default Vue.extend({
       background: @themeColor;
       color: #fff;
     }
+  }
+
+  .recent-list {
+    overflow-y: auto;
   }
 }
 </style>

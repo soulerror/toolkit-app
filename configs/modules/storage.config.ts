@@ -13,3 +13,8 @@ export const Base64StoreKey: string = 'history:tool:base64'
 //二维码生成记录
 export const QrCodeStoreKey: string = 'history:tool:qrcode'
 
+//sql填充记录
+export const SQLFillStoreKey: string = 'history:tool:sqlFill'
+
+
+

@@ -40,6 +40,7 @@ export default Vue.extend({
     margin: 0 auto;
 
     .route-box {
+      height: 100%;
       width: calc(100% - 280px);
       background: #fff;
       border-radius: 12px;
