@@ -2,9 +2,9 @@
   <!-- 侧边栏 -->
   <div class="sidebar">
     <div class="sidebar-title"><a-icon type="fire" class="ico" /> 热门工具</div>
-    <div class="hot-list">
+    <div class="sidebar-list">
       <div
-        class="hot-list-item"
+        class="sidebar-list-item"
         v-for="(item, index) in hotList"
         :key="index"
         @click="handleSkip(item.path)"
@@ -13,9 +13,9 @@
       </div>
     </div>
     <div class="sidebar-title"><a-icon type="clock-circle" /> 最近使用</div>
-    <div class="hot-list recent-list">
+    <div class="sidebar-list recent-list scroll-style">
       <div
-        class="hot-list-item"
+        class="sidebar-list-item"
         v-for="(item, index) in hisArr"
         :key="index"
         @click="handleSkip(item.path)"
@@ -94,8 +94,9 @@ export default Vue.extend({
       color: red;
     }
   }
-  .hot-list {
+  &-list {
     margin-bottom: 20px;
+    height: @header-3th-h * 4;
 
     &-item {
       height: @header-3th-h;
@@ -114,6 +115,7 @@ export default Vue.extend({
   }
 
   .recent-list {
+    height: calc(100% - (@header-3th-h * 4) - 150px);
     overflow-y: auto;
   }
 }
