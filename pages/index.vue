@@ -60,7 +60,7 @@ export default Vue.extend({
   display: grid;
   justify-content: space-around;
   grid-template-columns: repeat(auto-fill, @card-w);
-  grid-template-rows: @card-h @card-w;
+  grid-template-rows: repeat(auto-fill, @card-h);
   padding: 10px;
   grid-row-gap: 30px;
   grid-column-gap: 10px;
