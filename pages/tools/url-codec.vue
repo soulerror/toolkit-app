@@ -11,9 +11,7 @@
     <template #title> </template>
     <div class="url-box">
       <div class="input-box">
-        <div class="clean-btn" v-show="url" @click="setUrl()">
-          <a-icon type="close" />
-        </div>
+        <CloseButton v-show="url" @click="setUrl()" />
         <textarea
           class="url-input scroll-style"
           contenteditable="true"
@@ -173,21 +171,6 @@ export default Vue.extend({
       height: calc(100% - 60px);
       margin: 0;
     }
-  }
-
-  .clean-btn {
-    position: absolute;
-    right: 6px;
-    top: 6px;
-    height: 24px;
-    width: 24px;
-    line-height: 24px;
-    text-align: center;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-  .clean-btn:hover {
-    background-color: #dcdfe6;
   }
 }
 </style>

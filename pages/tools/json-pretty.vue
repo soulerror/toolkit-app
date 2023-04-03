@@ -11,9 +11,7 @@
   >
     <div class="json-box">
       <div class="input-box">
-        <div class="clean-btn" v-show="jsonStr" @click="cleanJson">
-          <a-icon type="close" />
-        </div>
+        <CloseButton v-show="jsonStr" @click="cleanJson" />
         <textarea
           class="json-input scroll-style"
           contenteditable="true"

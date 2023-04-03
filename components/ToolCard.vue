@@ -145,20 +145,6 @@ export default Vue.extend({
 .tool-sidebar-hide {
   right: -@width;
 }
-.clean-btn {
-  position: absolute;
-  right: 6px;
-  top: 6px;
-  height: 24px;
-  width: 24px;
-  line-height: 24px;
-  text-align: center;
-  border-radius: 50%;
-  cursor: pointer;
-}
-.clean-btn:hover {
-  background-color: #dcdfe6;
-}
 .his-box {
   height: calc(100% - @button-h - 20px);
 }

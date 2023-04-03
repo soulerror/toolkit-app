@@ -10,9 +10,7 @@
   >
     <div class="qr-code-box">
       <div class="input-box">
-        <div class="clean-btn" v-show="text" @click="setQrCodeText()">
-          <a-icon type="close" />
-        </div>
+        <CloseButton v-show="text" @click="setQrCodeText()" />
         <a-textarea
           v-model="text"
           :maxLength="1000"

@@ -14,33 +14,6 @@ body {
     height: 100%;
     font-size: 14px;
 }
-
-.scroll-style {
-
-    overflow-y: auto;
-    overflow-x: auto;
-
-    /*chrome滚动条样式修改*/
-    &::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-    }
-
-    /*滑块*/
-    &::-webkit-scrollbar-thumb {
-        background: @scrollColor;
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-        background: @scrollColor;
-    }
-
-    /*滑道*/
-    &::-webkit-scrollbar-track {
-        border-radius: 4px;
-    }
-}
-
 //顶部进度条颜色
 #nprogress .bar {
     background: @themeColor !important;

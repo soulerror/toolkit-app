@@ -9,18 +9,29 @@
     justify-content: flex-end;
 }
 
-.clean-btn {
-    position: absolute;
-    right: 6px;
-    top: 6px;
-    height: 24px;
-    width: 24px;
-    line-height: 24px;
-    text-align: center;
-    border-radius: 50%;
-    cursor: pointer;
-}
 
-.clean-btn:hover {
-    background-color: #dcdfe6;
+.scroll-style {
+
+    overflow-y: auto;
+    overflow-x: auto;
+
+    /*chrome滚动条样式修改*/
+    &::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    /*滑块*/
+    &::-webkit-scrollbar-thumb {
+        background: @scrollColor;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: @scrollColor;
+    }
+
+    /*滑道*/
+    &::-webkit-scrollbar-track {
+        border-radius: 4px;
+    }
 }

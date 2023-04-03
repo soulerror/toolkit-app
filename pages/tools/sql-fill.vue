@@ -19,13 +19,10 @@
             ></textarea>
           </div>
           <div class="fiil-part-params">
-            <div
-              class="clean-btn"
+            <CloseButton
               v-show="params"
               @click="clean(CLEAN_TYPE.PARMS)"
-            >
-              <a-icon type="close" />
-            </div>
+            ></CloseButton>
             <textarea
               v-model="params"
               class="input-box scroll-style"

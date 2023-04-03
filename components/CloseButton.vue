@@ -1,5 +1,5 @@
 <template>
-  <div class="clean-btn" v-show="sql" @click="_click">
+  <div class="clean-btn" @click="_click">
     <a-icon type="close" />
   </div>
 </template>
@@ -14,3 +14,23 @@ export default Vue.extend({
   },
 });
 </script>
+<style lang="less" scoped>
+@margin: 5px;
+@size: 30px;
+.clean-btn {
+  position: absolute;
+  right: @margin;
+  top: @margin;
+  height: @size;
+  width: @size;
+  line-height: @size;
+  text-align: center;
+  border-radius: 50%;
+  color: #333;
+  cursor: pointer;
+}
+.clean-btn:hover {
+  background: @themeColor;
+  color: #fff;
+}
+</style>
