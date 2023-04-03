@@ -8,9 +8,10 @@
       <div class="sql-content">
         <section class="fill-part sql-box-half">
           <div class="fill-part-sql">
-            <div class="clean-btn" v-show="sql" @click="clean(CLEAN_TYPE.SQL)">
-              <a-icon type="close" />
-            </div>
+            <CloseButton
+              v-show="sql"
+              @click="clean(CLEAN_TYPE.SQL)"
+            ></CloseButton>
             <textarea
               v-model="sql"
               class="input-box scroll-style"
@@ -155,7 +156,6 @@ export default Vue.extend({
     overflow-y: auto;
     padding: 0 20px;
     counter-reset: line;
-
   }
 }
 
