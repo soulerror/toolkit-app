@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="sidebar-title"><a-icon type="clock-circle" /> 最近使用</div>
-    <div class="sidebar-list recent-list scroll-style">
+    <div class="scroll-style sidebar-list recent-list">
       <div
         class="sidebar-list-item"
         v-for="(item, index) in hisArr"
@@ -116,7 +116,6 @@ export default Vue.extend({
 
   .recent-list {
     height: calc(100% - (@header-3th-h * 4) - 150px);
-    overflow-y: auto;
   }
 }
 </style>

@@ -21,6 +21,7 @@ export default {
   css: [
     'ant-design-vue/dist/antd.less',
     'assets/css/global.less',
+    'assets/css/common.less',
     'element-ui/lib/theme-chalk/color-picker.css'
   ],
   styleResources: {
