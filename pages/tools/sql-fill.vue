@@ -34,7 +34,7 @@
           <Button @click="paramsfill"><a-icon type="sync" /> 参数替换</Button>
           <Button @click="onCopyText"><a-icon type="copy" /> 一键复制 </Button>
           <Button @click="clean(CLEAN_TYPE.ALL)"
-            ><a-icon type="stop" /> 一键清除
+            ><a-icon type="delete" /> 一键清除
           </Button>
           <Button><a-icon type="history" /> 历史记录 </Button>
         </section>

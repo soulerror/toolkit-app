@@ -41,7 +41,8 @@ export default Vue.extend({
   border-radius: 12px;
 }
 .cp-button:hover {
-  background: @buttonColor;
+  background: @themeColor;
   color: #fff;
 }
+
 </style>

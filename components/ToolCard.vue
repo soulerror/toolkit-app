@@ -115,7 +115,7 @@ export default Vue.extend({
   background-color: #fff;
   box-shadow: @shadowColor;
   border-radius: 14px 0 0 14px;
-  transition: all 1s ease;
+  transition: all 300ms ease;
 }
 
 .tool-sidebar-mask {
@@ -124,7 +124,7 @@ export default Vue.extend({
   position: absolute;
   background: rgba(83, 62, 249, 0.1);
   top: 0;
-  transition: all 350ms ease;
+  transition: all 300ms ease;
 }
 
 .tool-sidebar-mask-hide {
