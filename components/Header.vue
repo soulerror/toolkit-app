@@ -9,6 +9,7 @@
         cover="塔奇の工具箱"
       ></TextTag>
     </div>
+    <img class="hello" src="https://cdn.icuzz.com/image/hello.gif" />
   </div>
 </template>
 <script lang="tsx">
@@ -33,6 +34,7 @@ export default Vue.extend({
   padding: 0 30px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
   .logo-box {
     display: flex;
@@ -43,6 +45,9 @@ export default Vue.extend({
       height: 40px;
       margin: 0 10px;
     }
+  }
+  .hello{
+    height: @header-1st-h;
   }
 }
 </style>

@@ -7,18 +7,40 @@
     </div>
     <div class="tool-box">
       <slot />
-      <div :class="`tool-sidebar-mask ${drawerVisible ? 'tool-sidebar-mask-show' : 'tool-sidebar-mask-hide'
-        }`" @click="_drawerClose" />
-      <div :class="`tool-sidebar ${drawerVisible ? 'tool-sidebar-show' : 'tool-sidebar-hide'
-        }`">
+      <div
+        :class="`tool-sidebar-mask ${
+          drawerVisible ? 'tool-sidebar-mask-show' : 'tool-sidebar-mask-hide'
+        }`"
+        @click="_drawerClose"
+      />
+      <div
+        :class="`tool-sidebar ${
+          drawerVisible ? 'tool-sidebar-show' : 'tool-sidebar-hide'
+        }`"
+      >
         <CloseButton @click="_drawerClose"></CloseButton>
-        <div class="scroll-style his-box">
-          <p class="his-list" v-for="(item, index) in drawerData" :key="index" @click="_drawerItemClick(item, index)"
-            :title="item">
+        <div v-show="drawerData.length > 0" class="scroll-style his-box">
+          <p
+            class="his-list"
+            v-for="(item, index) in drawerData"
+            :key="index"
+            @click="_drawerItemClick(item, index)"
+            :title="item"
+          >
             {{ item }}
           </p>
         </div>
-        <div class="bottom-btns bottom-btns-right">
+        <div
+          v-show="drawerData.length == 0"
+          class="scroll-style his-box empty-box"
+        >
+          <img src="https://cdn.icuzz.com/image/no_data.gif" />
+          <p>暂时没有历史数据</p>
+        </div>
+        <div
+          v-show="drawerData.length > 0"
+          class="bottom-btns bottom-btns-right"
+        >
           <Button @click="_clean"><a-icon type="delete" /> 清空历史 </Button>
         </div>
         <slot name="drawer" />
@@ -71,12 +93,10 @@ export default Vue.extend({
             modal.destroy();
           },
         });
-      }
-      else
-        this.$emit("clean");
+      } else this.$emit("clean");
     },
   },
-  components: { CloseButton }
+  components: { CloseButton },
 });
 </script>
 <style lang="less" scoped>
@@ -145,6 +165,19 @@ export default Vue.extend({
 
 .his-box {
   height: calc(100% - @button-h - 20px);
+}
+
+.empty-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 13px;
+  color: @mainColor;
+  img {
+    width: 120px;
+    margin: 0 auto;
+  }
 }
 
 .his-list {

@@ -28,7 +28,6 @@ export default Vue.extend({
   width: fit-content;
   padding: 0 12px;
   letter-spacing: 0.04em;
-  transition: all 0.1s linear 0s;
   cursor: pointer;
 }
 .shape-square {
@@ -44,5 +43,4 @@ export default Vue.extend({
   background: @themeColor;
   color: #fff;
 }
-
 </style>
