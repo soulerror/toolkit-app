@@ -7,44 +7,41 @@
     </div>
     <div class="tool-box">
       <slot />
-      <div
-        :class="`tool-sidebar-mask ${
-          drawerVisible ? 'tool-sidebar-mask-show' : 'tool-sidebar-mask-hide'
-        }`"
-        @click="_drawerClose"
-      />
-      <div
-        :class="`tool-sidebar ${
-          drawerVisible ? 'tool-sidebar-show' : 'tool-sidebar-hide'
-        }`"
-      >
-        <CloseButton @click="_drawerClose"></CloseButton>
-        <div v-show="drawerData.length > 0" class="scroll-style his-box">
-          <p
-            class="his-list"
-            v-for="(item, index) in drawerData"
-            :key="index"
-            @click="_drawerItemClick(item, index)"
-            :title="item"
-          >
-            {{ item }}
-          </p>
-        </div>
-        <div
-          v-show="drawerData.length == 0"
-          class="scroll-style his-box empty-box"
+    </div>
+    <div
+      :class="`tool-sidebar-mask ${
+        drawerVisible ? 'tool-sidebar-mask-show' : 'tool-sidebar-mask-hide'
+      }`"
+      @click="_drawerClose"
+    />
+    <div
+      :class="`tool-sidebar ${
+        drawerVisible ? 'tool-sidebar-show' : 'tool-sidebar-hide'
+      }`"
+    >
+      <CloseButton @click="_drawerClose"></CloseButton>
+      <div v-show="drawerData.length > 0" class="scroll-style his-box">
+        <p
+          class="his-list"
+          v-for="(item, index) in drawerData"
+          :key="index"
+          @click="_drawerItemClick(item, index)"
+          :title="item"
         >
-          <img src="https://cdn.icuzz.com/image/no_data.gif" />
-          <p>暂时没有历史数据</p>
-        </div>
-        <div
-          v-show="drawerData.length > 0"
-          class="bottom-btns bottom-btns-right"
-        >
-          <Button @click="_clean"><a-icon type="delete" /> 清空历史 </Button>
-        </div>
-        <slot name="drawer" />
+          {{ item }}
+        </p>
       </div>
+      <div
+        v-show="drawerData.length == 0"
+        class="scroll-style his-box empty-box"
+      >
+        <img src="https://cdn.icuzz.com/image/no_data.gif" />
+        <p>暂时没有历史数据</p>
+      </div>
+      <div v-show="drawerData.length > 0" class="bottom-btns bottom-btns-right">
+        <Button @click="_clean"><a-icon type="delete" /> 清空历史 </Button>
+      </div>
+      <slot name="drawer" />
     </div>
   </div>
 </template>

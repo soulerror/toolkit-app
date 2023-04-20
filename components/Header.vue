@@ -9,7 +9,7 @@
         cover="塔奇の工具箱"
       ></TextTag>
     </div>
-    <img class="hello" src="https://cdn.icuzz.com/image/hello.gif" />
+    <!-- <img class="hello" src="https://cdn.icuzz.com/image/hello.gif" /> -->
   </div>
 </template>
 <script lang="tsx">
