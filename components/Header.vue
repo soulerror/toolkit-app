@@ -3,18 +3,25 @@
     <div @click="handleClickIcon" class="logo-box">
       <img class="logo" src="@/assets/svg/home.svg" />
       <TextTag
-        hider="Tuch's Toolkit"
+        :hider="SITE_NAME_EN"
         class="title"
         @click="handleClickIcon"
-        cover="塔奇の工具箱"
+        :cover="SITE_NAME"
       ></TextTag>
     </div>
     <!-- <img class="hello" src="https://cdn.icuzz.com/image/hello.gif" /> -->
   </div>
 </template>
 <script lang="tsx">
+import { SITE_NAME, SITE_NAME_EN } from "@/configs/index";
 import Vue from "vue";
 export default Vue.extend({
+  data() {
+    return {
+      SITE_NAME,
+      SITE_NAME_EN,
+    };
+  },
   methods: {
     handleClickIcon() {
       this.$router.push({ path: "/" });
@@ -23,7 +30,6 @@ export default Vue.extend({
 });
 </script>
 <style lang="less" scoped>
-@import url("~assets/css/variable.less");
 .header {
   width: 100%;
   min-width: 1200px;
@@ -46,7 +52,7 @@ export default Vue.extend({
       margin: 0 10px;
     }
   }
-  .hello{
+  .hello {
     height: @header-1st-h;
   }
 }

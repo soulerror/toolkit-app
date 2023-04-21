@@ -18,9 +18,7 @@
           placeholder="请输入需要生成二维码的文本 最多1000个字符"
         ></a-textarea>
         <div class="bottom-btns bottom-btns-right">
-          <Button @click="generateQrCode"
-            ><a-icon type="qrcode" /> 生成二维码</Button
-          >
+          <Button @click="generateQrCode" type="qrcode"> 生成二维码</Button>
         </div>
       </div>
       <div class="output-box">
@@ -52,12 +50,8 @@
         </Card>
 
         <div class="bottom-btns">
-          <Button @click="downloadPng"
-            ><a-icon type="download" /> 下载二维码</Button
-          >
-          <Button @click="showHistory"
-            ><a-icon type="history" /> 历史记录</Button
-          >
+          <Button @click="downloadPng" type="download"> 下载二维码</Button>
+          <Button @click="showHistory" type="history"> 历史记录</Button>
         </div>
       </div>
     </div>

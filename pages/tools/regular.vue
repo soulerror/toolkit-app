@@ -14,9 +14,7 @@
         >
         </textarea>
         <div class="bottom-btns bottom-btns-right">
-          <Button @click="contentCheck"
-            ><a-icon type="check" /> 内容验证
-          </Button>
+          <Button @click="contentCheck" type="check"> 内容验证 </Button>
         </div>
       </div>
       <div class="output-box" v-html="result"></div>
@@ -86,14 +84,13 @@ function highLightKeywords(
 }
 </script>
 <style lang="less" scoped>
-
 .tool-box {
   .reg-input-box {
     display: flex;
     justify-content: center;
     align-items: center;
     height: @header-1st-h;
-    padding:20px;
+    padding: 20px;
     border-bottom: @border;
     .reg-input {
       width: 800px;

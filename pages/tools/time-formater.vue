@@ -4,7 +4,7 @@
       <TimeUnit v-for="item in 10" :key="item">{{
         curentTimestampe(item - 1)
       }}</TimeUnit>
-      <Button><a-icon type="copy" /> 点击复制</Button>
+      <Button type="copy"> 点击复制</Button>
     </Card>
   </ToolCard>
 </template>

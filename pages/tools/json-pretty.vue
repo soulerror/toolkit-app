@@ -27,10 +27,8 @@
           prettyStr
         }}</pre>
         <div class="bottom-btns">
-          <Button @click="showHistory"
-            ><a-icon type="history" /> 历史记录
-          </Button>
-          <Button @click="onCopyText"> <a-icon type="copy" /> 复制文本 </Button>
+          <Button @click="showHistory" type="history"> 历史记录 </Button>
+          <Button @click="onCopyText" type="copy"> 复制文本 </Button>
         </div>
       </div>
     </div>
@@ -136,8 +134,6 @@ export default Vue.extend({
 });
 </script>
 <style lang="less" scoped>
-@import url("~assets/css/variable.less");
-@import url("~assets/css/common.less");
 .json {
   .clean-btn {
     position: absolute;

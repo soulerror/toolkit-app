@@ -1,5 +1,6 @@
 <template>
   <div :class="`cp-button shape-${shape}`" @click="_click">
+    <a-icon v-if="type" :type="type" />
     <slot />
   </div>
 </template>
@@ -11,6 +12,10 @@ export default Vue.extend({
       type: String,
       default: "circle",
     },
+    type: {
+      type: String,
+      default: undefined,
+    },
   },
   methods: {
     _click() {
@@ -20,7 +25,6 @@ export default Vue.extend({
 });
 </script>
 <style lang="less" scoped>
-@import url("~/assets/css/variable.less");
 .cp-button {
   height: @button-h;
   line-height: @button-h;

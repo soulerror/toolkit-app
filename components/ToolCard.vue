@@ -39,7 +39,7 @@
         <p>暂时没有历史数据</p>
       </div>
       <div v-show="drawerData.length > 0" class="bottom-btns bottom-btns-right">
-        <Button @click="_clean"><a-icon type="delete" /> 清空历史 </Button>
+        <Button @click="_clean" type="delete"> 清空历史 </Button>
       </div>
       <slot name="drawer" />
     </div>
@@ -97,7 +97,6 @@ export default Vue.extend({
 });
 </script>
 <style lang="less" scoped>
-@import url("@/assets/css/common.less");
 @width: 240px;
 
 .tool-body {

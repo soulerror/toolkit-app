@@ -1,17 +1,12 @@
+import { SITE_NAME,SITE_NAME_EN, WebSiteMeta} from "./configs"
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "塔奇の工具箱 - Tuch's Toolkit",
+    title: `${SITE_NAME} - ${SITE_NAME_EN}`,
     htmlAttrs: {
       lang: 'en'
     },
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { name: 'keyword', content: "在线工具,开发人员工具,代码格式化、压缩、加密、解密,编码,解码,进制转换,二维码,时间戳,rgb,hex,cron表达式,base64,正则表达式,json格式化,照片压缩,pdf合并" },
-      { hid: 'description', name: 'description', content: "在线工具,开发人员工具,代码格式化、压缩、加密、解密,编码,解码,进制转换,二维码,时间戳,rgb,hex,cron表达式,base64,正则表达式,json格式化,照片压缩,pdf合并" },
-      { name: 'format-detection', content: 'telephone=no' }
-    ],
+    meta: WebSiteMeta,
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]

@@ -1,4 +1,4 @@
- <template>
+<template>
   <!-- Url编解码工具 -->
   <ToolCard
     title="Base64编解码工具"
@@ -10,7 +10,7 @@
   >
     <div class="url-box">
       <div class="input-box">
-        <CloseButton v-show="content" @click="setContent()"/>
+        <CloseButton v-show="content" @click="setContent()" />
         <textarea
           class="url-input scroll-style"
           contenteditable="true"
@@ -20,21 +20,19 @@
           v-model="content"
         ></textarea>
         <div class="bottom-btns bottom-btns-right">
-          <Button @click="contentCodec('ENCODE')"
-            ><a-icon type="lock" /> Base64编码
+          <Button @click="contentCodec('ENCODE')" type="lock">
+            Base64编码
           </Button>
-          <Button @click="contentCodec('DECODE')"
-            ><a-icon type="unlock" /> Base64解码
+          <Button @click="contentCodec('DECODE')" type="unlock">
+            Base64解码
           </Button>
         </div>
       </div>
       <div class="url-output">
         <pre class="scroll-style">{{ result }}</pre>
         <div class="bottom-btns">
-          <Button @click="showHistory"
-            ><a-icon type="history" /> 历史记录
-          </Button>
-          <Button @click="onCopyText"> <a-icon type="copy" /> 复制文本 </Button>
+          <Button @click="showHistory" type="history"> 历史记录 </Button>
+          <Button @click="onCopyText" type="copy"> 复制文本 </Button>
         </div>
       </div>
     </div>

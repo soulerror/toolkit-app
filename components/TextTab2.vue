@@ -22,7 +22,6 @@ export default Vue.extend({
 });
 </script>
 <style lang="less" scoped>
-@import url("~assets/css/variable.less");
 .head-tab {
   display: flex;
   flex-direction: column;

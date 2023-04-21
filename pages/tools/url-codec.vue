@@ -1,4 +1,4 @@
- <template>
+<template>
   <!-- Url编解码工具 -->
   <ToolCard
     title="Url编解码工具"
@@ -21,21 +21,15 @@
           v-model="url"
         ></textarea>
         <div class="bottom-btns bottom-btns-right">
-          <Button @click="urlCodec('ENCODE')"
-            ><a-icon type="lock" /> URL编码
-          </Button>
-          <Button @click="urlCodec('DECODE')"
-            ><a-icon type="unlock" /> URL解码
-          </Button>
+          <Button @click="urlCodec('ENCODE')" type="lock"> URL编码 </Button>
+          <Button @click="urlCodec('DECODE')" type="unlock"> URL解码 </Button>
         </div>
       </div>
       <div class="url-output">
         <pre class="scroll-style">{{ result }}</pre>
         <div class="bottom-btns">
-          <Button @click="showHistory"
-            ><a-icon type="history" /> 历史记录
-          </Button>
-          <Button @click="onCopyText"> <a-icon type="copy" /> 复制文本 </Button>
+          <Button @click="showHistory" type="history"> 历史记录 </Button>
+          <Button @click="onCopyText" type="copy"> 复制文本 </Button>
         </div>
       </div>
     </div>

@@ -2,8 +2,11 @@
   <div>
     <ToolCard
       title="SQL参数填充工具"
+      :drawerVisible="visible"
       @drawerClose="onClose"
-      :drawerVisible="drawerVisible"
+      :drawerData="history"
+      @clickDrawerItem="setUrl"
+      @confirmDel="confirmDel"
     >
       <div class="sql-content">
         <section class="fill-part sql-box-half">
@@ -31,12 +34,12 @@
           </div>
         </section>
         <section class="bottom-btns">
-          <Button @click="paramsfill"><a-icon type="sync" /> 参数替换</Button>
-          <Button @click="onCopyText"><a-icon type="copy" /> 一键复制 </Button>
-          <Button @click="clean(CLEAN_TYPE.ALL)"
-            ><a-icon type="delete" /> 一键清除
+          <Button @click="paramsfill" type="sync"> 参数替换</Button>
+          <Button @click="onCopyText" type="copy"> 一键复制 </Button>
+          <Button @click="clean(CLEAN_TYPE.ALL)" type="delete"
+            >一键清除
           </Button>
-          <Button><a-icon type="history" /> 历史记录 </Button>
+          <Button type="history" @click="showHistory"> 历史记录 </Button>
         </section>
         <section class="preview-part">
           <pre class="scroll-style">
@@ -50,6 +53,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { clipboard } from "~/utils";
+import { SQLFillStoreKey } from "@/configs";
 
 enum CLEAN_TYPE {
   SQL,
@@ -63,6 +67,8 @@ interface DataType {
   params: string | null | undefined;
   content: string | null | undefined;
   CLEAN_TYPE: typeof CLEAN_TYPE;
+  visible: boolean;
+  history: Array<any>;
 }
 
 export default Vue.extend({
@@ -72,7 +78,9 @@ export default Vue.extend({
       sql: "",
       params: "",
       content: "",
+      visible: false,
       CLEAN_TYPE,
+      history: [],
     };
   },
   methods: {
@@ -80,7 +88,6 @@ export default Vue.extend({
       this.drawerVisible = false;
     },
     clean(type: CLEAN_TYPE) {
-      console.log(type, 222);
       switch (type) {
         case CLEAN_TYPE.SQL:
           this.sql = null;
@@ -89,8 +96,6 @@ export default Vue.extend({
           this.params = null;
           break;
         case CLEAN_TYPE.ALL:
-          console.log(111111);
-
           this.sql = null;
           this.params = null;
           this.content = null;
@@ -99,14 +104,20 @@ export default Vue.extend({
     },
     paramsfill() {
       let { sql, params } = this;
-      let paramsArr = params?.split(",");
-      paramsArr?.forEach((param) => {
-        sql = sql?.replace("?", param);
-      });
+      try {
+        let paramsArr = params?.split(",");
+        paramsArr?.forEach((param) => {
+          sql = sql?.replace("?", param);
+        });
+      } catch (e) {}
       this.content = sql;
     },
     onCopyText() {
       this.content && clipboard(this.content);
+    },
+    showHistory() {
+      this.history = this.$getArrayStore(SQLFillStoreKey);
+      this.visible = true;
     },
   },
 });
@@ -160,4 +171,3 @@ export default Vue.extend({
   justify-content: flex-end;
 }
 </style>
-
