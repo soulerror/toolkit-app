@@ -2,12 +2,12 @@
   <div class="header">
     <div @click="handleClickIcon" class="logo-box">
       <img class="logo" src="@/assets/svg/home.svg" />
-      <TextTag
+      <ColorTab
         :hider="SITE_NAME_EN"
         class="title"
         @click="handleClickIcon"
         :cover="SITE_NAME"
-      ></TextTag>
+      ></ColorTab>
     </div>
     <!-- <img class="hello" src="https://cdn.icuzz.com/image/hello.gif" /> -->
   </div>
