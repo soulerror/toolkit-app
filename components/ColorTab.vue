@@ -14,8 +14,8 @@ export default Vue.extend({
   render() {
     return (
       <div class="head-tab" onClick={(e: Event) => this.$emit("click", e)}>
-        <span class="color-text">{this.hider}</span>
-        <p class="color-text">{this.cover}</p>
+        <span>{this.hider}</span>
+        <p>{this.cover}</p>
       </div>
     );
   },
@@ -23,13 +23,6 @@ export default Vue.extend({
 </script>
 <style lang="less" scoped>
 .head-tab {
-  .color-text{
-    background-clip: text;
-    font-weight: bold;
-    color: transparent;
-    // background-image: linear-gradient(90deg, #533ef9 -30%,#8476FF 30%,#46DC74 100%);
-    background-image: linear-gradient(90deg, #FFC701 -30%, #46DC74 30%, #24A7F6 60%, #533ef9 100%);;
-  }
   display: flex;
   flex-direction: column;
   p,
@@ -41,9 +34,28 @@ export default Vue.extend({
     display: block;
     opacity: 0;
     transform: translateY(10px);
+    background-clip: text;
+    color: transparent;
+    background-image: linear-gradient(
+      90deg,
+      #ffc701 -30%,
+      #46dc74 30%,
+      #24a7f6 60%,
+      #533ef9 100%
+    );
   }
   p {
     transform: translateY(-10px);
+    background-clip: text;
+    color: transparent;
+    background-image: linear-gradient(
+      90deg,
+      #533ef9 -30%,
+      #24a7f6 30%,
+      #46dc74 60%,
+      #ffc701 100%
+    );
+    font-weight: bold;
   }
   &:hover {
     color: @mainColor;
