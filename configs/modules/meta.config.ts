@@ -13,23 +13,6 @@ interface MetaContent {
 
 const COMMON_TITLE = " - " + SITE_NAME;
 
-export const WebSiteMeta: Array<MetaContent> = [
-  { charset: "utf-8", name: "", content: "" },
-  { name: "viewport", content: "width=device-width, initial-scale=1" },
-  {
-    name: "keyword",
-    content:
-      "在线工具,开发人员工具,代码格式化、压缩、加密、解密,编码,解码,进制转换,二维码,时间戳,rgb,hex,cron表达式,base64,正则表达式,json格式化,照片压缩,pdf合并",
-  },
-  {
-    hid: "description",
-    name: "description",
-    content:
-      "在线工具,开发人员工具,代码格式化、压缩、加密、解密,编码,解码,进制转换,二维码,时间戳,rgb,hex,cron表达式,base64,正则表达式,json格式化,照片压缩,pdf合并",
-  },
-  { name: "format-detection", content: "telephone=no" },
-];
-
 export const JsonMeta: Meta = {
   title: "JSON格式化" + COMMON_TITLE,
   meta: [
