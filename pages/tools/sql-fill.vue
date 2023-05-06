@@ -63,9 +63,9 @@ enum CLEAN_TYPE {
 
 interface DataType {
   drawerVisible: boolean;
-  sql: string | null | undefined;
-  params: string | null | undefined;
-  content: string | null | undefined;
+  sql: string|undefined ;
+  params: string|undefined ;
+  content: string|undefined;
   CLEAN_TYPE: typeof CLEAN_TYPE;
   history: Array<StoreType>;
   hisTextArr:Array<string>
@@ -95,15 +95,15 @@ export default Vue.extend({
     clean(type: CLEAN_TYPE) {
       switch (type) {
         case CLEAN_TYPE.SQL:
-          this.sql = null;
+          this.sql = undefined
           break;
         case CLEAN_TYPE.PARMS:
-          this.params = null;
+          this.params =undefined;
           break;
         case CLEAN_TYPE.ALL:
-          this.sql = null;
-          this.params = null;
-          this.content = null;
+          this.sql = undefined;
+          this.params = undefined;
+          this.content = undefined;
           break;
       }
     },

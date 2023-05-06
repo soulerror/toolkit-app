@@ -1,28 +1,16 @@
 <template>
   <!-- Url编解码工具 -->
-  <ToolCard
-    title="Url编解码工具"
-    :drawerVisible="visible"
-    @drawerClose="onClose"
-    :drawerData="history"
-    @clickDrawerItem="setUrl"
-    @confirmDel="confirmDel"
-  >
+  <ToolCard title="Url编解码工具" :drawerVisible="visible" @drawerClose="onClose" :drawerData="history"
+    @clickDrawerItem="setUrl" @confirmDel="confirmDel">
     <template #title> </template>
     <div class="url-box">
       <div class="input-box">
-        <CloseButton v-show="url" @click="setUrl()" />
-        <textarea
-          class="url-input scroll-style"
-          contenteditable="true"
-          aria-multiline="true"
-          white-space="pre-wap"
-          placeholder="请输入需要编解码的URL"
-          v-model="url"
-        ></textarea>
+        <CloseButton v-show="url" @click="setUrl" />
+        <textarea class="url-input scroll-style" contenteditable="true" aria-multiline="true" white-space="pre-wap"
+          placeholder="请输入需要编解码的URL" v-model="url"></textarea>
         <div class="bottom-btns bottom-btns-right">
-          <Button @click="urlCodec('ENCODE')" type="lock"> URL编码 </Button>
-          <Button @click="urlCodec('DECODE')" type="unlock"> URL解码 </Button>
+          <Button @click="urlCodec(Codec.ENCODE)" type="lock"> URL编码 </Button>
+          <Button @click="urlCodec(Codec.DECODE)" type="unlock"> URL解码 </Button>
         </div>
       </div>
       <div class="url-output">
@@ -45,11 +33,13 @@ interface DataType {
   result: string;
   visible: boolean;
   history: Array<string>;
+  Codec: typeof Codec
 }
 
-const enum Codec {
-  DECODE = "DECODE",
-  ENCODE = "ENCODE",
+
+enum Codec {
+  DECODE,
+  ENCODE,
 }
 
 export default Vue.extend({
@@ -62,6 +52,7 @@ export default Vue.extend({
       result: "",
       visible: false,
       history: [],
+      Codec
     };
   },
   methods: {
@@ -138,10 +129,11 @@ export default Vue.extend({
     flex-direction: column;
   }
 
-  & > div {
+  &>div {
     width: 50%;
   }
-  & > div:first-of-type {
+
+  &>div:first-of-type {
     border-right: @border;
   }
 
@@ -157,9 +149,11 @@ export default Vue.extend({
     color: #000;
     resize: none;
   }
+
   .url-output {
     position: relative;
     overflow: hidden;
+
     pre {
       padding: 10px;
       height: calc(100% - 60px);

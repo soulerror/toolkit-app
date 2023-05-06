@@ -1,29 +1,17 @@
 <template>
   <!-- Url编解码工具 -->
-  <ToolCard
-    title="Base64编解码工具"
-    :drawerVisible="visible"
-    @drawerClose="onClose"
-    :drawerData="history"
-    @clickDrawerItem="setContent"
-    @confirmClean="confirmDel"
-  >
+  <ToolCard title="Base64编解码工具" :drawerVisible="visible" @drawerClose="onClose" :drawerData="history"
+    @clickDrawerItem="setContent" @confirmClean="confirmDel">
     <div class="url-box">
       <div class="input-box">
-        <CloseButton v-show="content" @click="setContent()" />
-        <textarea
-          class="url-input scroll-style"
-          contenteditable="true"
-          aria-multiline="true"
-          white-space="pre-wap"
-          placeholder="请输入需要编解码的内容"
-          v-model="content"
-        ></textarea>
+        <CloseButton v-show="content" @click="setContent" />
+        <textarea class="url-input scroll-style" contenteditable="true" aria-multiline="true" white-space="pre-wap"
+          placeholder="请输入需要编解码的内容" v-model="content"></textarea>
         <div class="bottom-btns bottom-btns-right">
-          <Button @click="contentCodec('ENCODE')" type="lock">
+          <Button @click="contentCodec(Codec.ENCODE)" type="lock">
             Base64编码
           </Button>
-          <Button @click="contentCodec('DECODE')" type="unlock">
+          <Button @click="contentCodec(Codec.DECODE)" type="unlock">
             Base64解码
           </Button>
         </div>
@@ -49,11 +37,12 @@ interface DataType {
   result: string;
   visible: boolean;
   history: Array<string>;
+  Codec: typeof Codec
 }
 
-const enum Codec {
-  DECODE = "DECODE",
-  ENCODE = "ENCODE",
+enum Codec {
+  DECODE,
+  ENCODE,
 }
 
 export default Vue.extend({
@@ -66,6 +55,7 @@ export default Vue.extend({
       result: "",
       visible: false,
       history: [],
+      Codec
     };
   },
   methods: {
@@ -133,6 +123,7 @@ export default Vue.extend({
 .url-box {
   display: flex;
   height: 100%;
+
   .input-box {
     border-right: @border;
     position: relative;
@@ -140,10 +131,11 @@ export default Vue.extend({
     flex-direction: column;
   }
 
-  & > div {
+  &>div {
     width: 50%;
   }
-  & > div:first-of-type {
+
+  &>div:first-of-type {
     border-right: @border;
   }
 
@@ -159,9 +151,11 @@ export default Vue.extend({
     color: #000;
     resize: none;
   }
+
   .url-output {
     position: relative;
     overflow: hidden;
+
     pre {
       padding: 10px;
       height: calc(100% - @button-h - 20px);

@@ -1,22 +1,11 @@
 <template>
-  <ToolCard
-    title="二维码生成识别工具"
-    confirmable
-    :drawerVisible="drawerVisibility"
-    @drawerClose="onClose"
-    :drawerData="textHis"
-    @clickDrawerItem="setQrCodeText"
-    @confirmClean="confirmClean"
-  >
+  <ToolCard title="二维码生成识别工具" confirmable :drawerVisible="drawerVisibility" @drawerClose="onClose" :drawerData="textHis"
+    @clickDrawerItem="setQrCodeText" @confirmClean="confirmClean">
     <div class="qr-code-box">
       <div class="input-box">
         <CloseButton v-show="text" @click="setQrCodeText()" />
-        <a-textarea
-          v-model="text"
-          :maxLength="1000"
-          class="code-input scroll-style"
-          placeholder="请输入需要生成二维码的文本 最多1000个字符"
-        ></a-textarea>
+        <a-textarea v-model="text" :maxLength="1000" class="code-input scroll-style"
+          placeholder="请输入需要生成二维码的文本 最多1000个字符"></a-textarea>
         <div class="bottom-btns bottom-btns-right">
           <Button @click="generateQrCode" type="qrcode"> 生成二维码</Button>
         </div>
@@ -24,19 +13,11 @@
       <div class="output-box">
         <Card title="二维码配置" class="config-card" bodyClass="config-form">
           <FormItem icon="bg-colors" label="二维码颜色">
-            <ColorPicker
-              size="small"
-              popper-class="color-pick-box"
-              v-model="codeOptions.color.dark"
-            />
+            <ColorPicker size="small" popper-class="color-pick-box" v-model="color" />
           </FormItem>
           <FormItem label="下载规格" icon="font-size">
             <a-select style="width: 80px" v-model="codeOptions.width">
-              <a-select-option
-                v-for="(size, index) in sizeOptions"
-                :key="index"
-                :value="size"
-              >
+              <a-select-option v-for="(size, index) in sizeOptions" :key="index" :value="size">
                 {{ size }}
               </a-select-option>
             </a-select>
@@ -59,22 +40,24 @@
 </template>
 <script lang="ts">
 import { QrCodeStoreKey } from "@/configs";
-import QrCode from "qrcode";
+import { toCanvas, QRCodeRenderersOptions, } from "qrcode";
 import Vue from "vue";
 import { ColorPicker } from "element-ui";
 var canvas: any = null;
+
 
 interface DataType {
   text: string;
   visibility: Boolean;
   drawerVisibility: Boolean;
   generateHis: Array<StoreType>;
-  codeOptions: QrCode.QRCodeRenderersOptions;
+  codeOptions: QRCodeRenderersOptions
   sizeOptions: Array<Number>;
   textHis: Array<String>;
+  color: string | undefined
 }
 
-const defaultOptions: QrCode.QRCodeRenderersOptions = {
+const defaultOptions: QRCodeRenderersOptions = {
   width: 300,
   scale: 1,
   color: {
@@ -84,7 +67,7 @@ const defaultOptions: QrCode.QRCodeRenderersOptions = {
 
 interface StoreType {
   value: string;
-  config: QrCode.QRCodeRenderersOptions;
+  config: QRCodeRenderersOptions;
 }
 
 const sizeOptions: Array<Number> = [
@@ -106,6 +89,7 @@ export default Vue.extend({
       },
       sizeOptions,
       textHis: [],
+      color: undefined
     };
   },
   mounted() {
@@ -119,11 +103,12 @@ export default Vue.extend({
   methods: {
     generateQrCode(text?: string) {
       text = text ? text : this.text;
+      const { color } = this
       if (text)
-        QrCode.toCanvas(
+        toCanvas(
           canvas,
           text,
-          { ...this.codeOptions, width: defaultOptions.width },
+          { ...this.codeOptions, width: defaultOptions.width, color: { dark: color } },
           (error) => {
             if (error) this.$message.error("生成二维码失败,请重试");
             else {
@@ -138,10 +123,10 @@ export default Vue.extend({
       else this.$message.error("请输入需要生成二维码的字符");
     },
     downloadPng() {
-      let { text } = this;
+      let { text,color } = this;
       let cav: any = document.createElement("canvas");
       if (text)
-        QrCode.toCanvas(cav, text, this.codeOptions, (error) => {
+        toCanvas(cav, text, {...this.codeOptions,color:{dark:color}}, (error) => {
           if (!error) {
             let doc = document.createElement("a");
             doc.href = cav.toDataURL();
@@ -185,6 +170,7 @@ export default Vue.extend({
     width: 50%;
     padding: 0 20px;
   }
+
   .input-box {
     display: flex;
     flex-direction: column;
@@ -198,6 +184,7 @@ export default Vue.extend({
       flex: 1;
     }
   }
+
   .output-box {
     height: 10;
     display: flex;
@@ -212,10 +199,12 @@ export default Vue.extend({
 
     .code-box {
       flex: 1;
+
       .canvas-box {
         width: 300px;
         height: 300px;
       }
+
       #code {
         z-index: -1;
       }
@@ -228,7 +217,7 @@ export default Vue.extend({
     border: @border;
     border-radius: 12px;
 
-    & > span {
+    &>span {
       width: 100%;
       display: block;
       line-height: 30px;
