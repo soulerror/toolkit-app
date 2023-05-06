@@ -2,11 +2,11 @@
   <div>
     <ToolCard
       title="SQL参数填充工具"
-      :drawerVisible="visible"
+      :drawerVisible="drawerVisible"
       @drawerClose="onClose"
-      :drawerData="history"
-      @clickDrawerItem="setUrl"
-      @confirmDel="confirmDel"
+      :drawerData="hisTextArr"
+      @clickDrawerItem="setParams"
+      @confirmClean="confirmClean"
     >
       <div class="sql-content">
         <section class="fill-part sql-box-half">
@@ -67,8 +67,13 @@ interface DataType {
   params: string | null | undefined;
   content: string | null | undefined;
   CLEAN_TYPE: typeof CLEAN_TYPE;
-  visible: boolean;
-  history: Array<any>;
+  history: Array<StoreType>;
+  hisTextArr:Array<string>
+}
+
+interface StoreType {
+  sql:string,
+  params:string
 }
 
 export default Vue.extend({
@@ -78,9 +83,9 @@ export default Vue.extend({
       sql: "",
       params: "",
       content: "",
-      visible: false,
       CLEAN_TYPE,
       history: [],
+      hisTextArr:[]
     };
   },
   methods: {
@@ -111,14 +116,30 @@ export default Vue.extend({
         });
       } catch (e) {}
       this.content = sql;
+      this.$storeArrayItem(SQLFillStoreKey,{sql,params}) as StoreType
     },
     onCopyText() {
       this.content && clipboard(this.content);
     },
     showHistory() {
-      this.history = this.$getArrayStore(SQLFillStoreKey);
-      this.visible = true;
+      const history = this.$getArrayStore(SQLFillStoreKey) as Array<StoreType>;
+      this.history = history
+      this.hisTextArr = history?.map(item=>item.sql)
+      this.drawerVisible = true;
     },
+    setParams(sql:string){
+      const hisArr = this.history
+      const sqlHis = hisArr.find(item=>sql===item.sql)
+      this.sql = sqlHis?.sql
+      this.params = sqlHis?.params
+      this.paramsfill()
+    },
+    confirmClean(){
+      console.log(11111);
+      this.$storeLocal(SQLFillStoreKey, []);
+      this.showHistory();
+    }
+    
   },
 });
 </script>
