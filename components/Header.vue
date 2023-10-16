@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div @click="handleClickIcon" class="logo-box">
-      <img class="logo" src="@/assets/svg/home.svg" />
+      <img class="logo" src="@/assets/svg/apple.svg" />
       <ColorTab
         :hider="SITE_NAME_EN"
         class="title"

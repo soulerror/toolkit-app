@@ -79,6 +79,14 @@ export const routeArr: Array<Page> = [
         desc: "在线时间戳转换、时间格式转换工具",
         status: ToolStatus.DEVELOPING
     },
+    {
+        path: "/tools/java",
+        name: "Java实体生成",
+        icon: 'clock',
+        abbr: "Java Generator",
+        desc: "在线时间戳转换、时间格式转换工具",
+        status: ToolStatus.DEVELOPING
+    },
 ]
 //路由Page结构定义
 export interface Page {
