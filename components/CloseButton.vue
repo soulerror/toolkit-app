@@ -28,6 +28,7 @@ export default Vue.extend({
   border-radius: 50%;
   color: #333;
   cursor: pointer;
+  background-color: #fff;
 }
 .clean-btn:hover {
   background: @themeColor;

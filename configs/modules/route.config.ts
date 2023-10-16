@@ -82,8 +82,8 @@ export const routeArr: Array<Page> = [
     {
         path: "/tools/java",
         name: "Java实体生成",
-        icon: 'clock',
-        abbr: "Java Generator",
+        icon: 'java',
+        abbr: "Java Entity Generator",
         desc: "在线时间戳转换、时间格式转换工具",
         status: ToolStatus.DEVELOPING
     },

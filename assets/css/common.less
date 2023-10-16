@@ -1,41 +1,40 @@
 .bottom-btns {
-    height: 60px;
-    display: flex;
-    align-items: center;
-    padding: 0 20px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  line-height: 60px;
 }
-
 .bottom-btns-right {
-    justify-content: flex-end;
+  justify-content: flex-end;
 }
 
 //高亮颜色
 .highlight-text {
-    color: red !important;
+  color: red !important;
 }
 
 .scroll-style {
+  overflow-y: auto;
+  overflow-x: auto;
 
-    overflow-y: auto;
-    overflow-x: auto;
+  /*chrome滚动条样式修改*/
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
 
-    /*chrome滚动条样式修改*/
-    &::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-    }
+  /*滑块*/
+  &::-webkit-scrollbar-thumb {
+    background: @scrollColor;
+  }
 
-    /*滑块*/
-    &::-webkit-scrollbar-thumb {
-        background: @scrollColor;
-    }
+  &::-webkit-scrollbar-thumb:hover {
+    background: @scrollColor;
+  }
 
-    &::-webkit-scrollbar-thumb:hover {
-        background: @scrollColor;
-    }
-
-    /*滑道*/
-    &::-webkit-scrollbar-track {
-        border-radius: 4px;
-    }
+  /*滑道*/
+  &::-webkit-scrollbar-track {
+    border-radius: 4px;
+  }
 }
