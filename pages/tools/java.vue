@@ -20,7 +20,7 @@
         ></textarea>
         <div class="bottom-btns bottom-btns-right">
           <Button type="history"> 历史记录 </Button>
-          <Button type="copy"> 复制文本 </Button>
+          <Button type="copy" @click="onClick"> 复制文本 </Button>
         </div>
       </div>
     </div>
@@ -62,6 +62,7 @@ export default Vue.extend({
     },
     setParams(sql: string) {},
     confirmClean() {},
+    async onClick() {},
   },
 });
 </script>
