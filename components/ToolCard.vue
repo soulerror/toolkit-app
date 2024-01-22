@@ -56,7 +56,7 @@ export default Vue.extend({
       default: false,
     },
     drawerData: {
-      type: Array,
+      type: Array<any>,
       default: () => [],
     },
     title: {

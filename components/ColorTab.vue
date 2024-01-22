@@ -36,25 +36,27 @@ export default Vue.extend({
     transform: translateY(10px);
     background-clip: text;
     color: transparent;
-    background-image: linear-gradient(
-      90deg,
-      #ffc701 -30%,
-      #46dc74 30%,
-      #24a7f6 60%,
-      #533ef9 100%
-    );
+    // background-image: linear-gradient(
+    //   90deg,
+    //   #ffc701 -30%,
+    //   #46dc74 30%,
+    //   #24a7f6 60%,
+    //   #533ef9 100%
+    // );
+    background-image: linear-gradient(90deg, #fff 0%, #533ef9 100%);
   }
   p {
     transform: translateY(-10px);
     background-clip: text;
     color: transparent;
-    background-image: linear-gradient(
-      90deg,
-      #533ef9 -30%,
-      #24a7f6 30%,
-      #46dc74 60%,
-      #ffc701 100%
-    );
+    // background-image: linear-gradient(
+    //   90deg,
+    //   #533ef9 -30%,
+    //   #24a7f6 30%,
+    //   #46dc74 60%,
+    //   #ffc701 100%
+    // );
+    background-image: linear-gradient(90deg, #533ef9 0%, #fff 100%);
     font-weight: bold;
   }
   &:hover {
